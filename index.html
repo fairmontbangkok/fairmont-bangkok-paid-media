@@ -4,487 +4,632 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>฿100K Budget Dashboard — Asia & Pacific</title>
+<title>Google Ads Budget Forecast — Fairmont Bangkok Sukhumvit</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg: #f7f7f5;
-  --white: #ffffff;
-  --border: #e8e6e1;
-  --border2: #d4d0c8;
-  --text: #1a1a18;
-  --muted: #8a8780;
-  --soft: #f2f0eb;
-  --accent: #1a3a2a;
-  --gold: #c9973a;
-  --gold-light: #fdf6e9;
-  --hk: #1a7a5e;
-  --my: #1d9e75;
-  --sg: #1e5fa8;
-  --au: #2574c4;
-  --warn: #c0392b;
-  --warn-light: #fdf2f0;
-  --success-light: #edf7f3;
-  --font: 'Montserrat', sans-serif;
-  --mono: 'DM Mono', monospace;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f4f0;--white:#fff;--border:#e4e1da;--text:#1a1916;--muted:#8c8880;
+  --soft:#eeece7;--deep:#1a3328;--gold:#b8862a;--gold-lt:#faf3e4;--gold-bd:#e8c87a;
+  --hk:#1a6e52;--my:#1e9468;--sg:#1a4f8c;--au:#1e65b4;
+  --red:#b83232;--red-lt:#fdf0f0;--green-lt:#edf6f1;
+  --font:'Montserrat',sans-serif;--mono:'DM Mono',monospace;
 }
-body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 14px; line-height: 1.6; min-height: 100vh; }
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.6;min-height:100vh}
 
-.topbar { background: var(--accent); color: #fff; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 52px; }
-.topbar-brand { display: flex; align-items: center; gap: 12px; }
-.topbar-logo { width: 28px; height: 28px; background: var(--gold); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
-.topbar-name { font-size: 13px; font-weight: 600; letter-spacing: 0.03em; }
-.topbar-right { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; }
+/* TOPBAR */
+.topbar{background:var(--deep);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:54px;border-bottom:2px solid var(--gold)}
+.tb-l{display:flex;align-items:center;gap:14px}
+.tb-logo{width:32px;height:32px;background:var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--deep)}
+.tb-name{font-size:13px;font-weight:600;color:#fff;letter-spacing:.03em}
+.tb-sep{width:1px;height:18px;background:rgba(255,255,255,.2)}
+.tb-sub{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.04em}
+.tb-r{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.38);letter-spacing:.06em}
 
-.header { background: var(--white); border-bottom: 1px solid var(--border); padding: 28px 40px 0; }
-.header-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; }
-.eyebrow { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
-.header-title { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); line-height: 1.2; }
-.header-title span { color: var(--gold); }
-.header-sub { font-size: 12px; color: var(--muted); margin-top: 5px; }
-.badge-row { display: flex; gap: 10px; }
-.hbadge { background: var(--soft); border: 1px solid var(--border); border-radius: 10px; padding: 12px 18px; text-align: center; min-width: 100px; }
-.hb-label { font-family: var(--mono); font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
-.hb-val { font-size: 19px; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
-.hb-sub { font-size: 10px; color: var(--muted); margin-top: 2px; }
+/* HEADER */
+.hdr{background:var(--white);border-bottom:1px solid var(--border);padding:28px 40px 0}
+.hdr-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;gap:24px}
+.eyebrow{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}
+.h-title{font-size:25px;font-weight:800;letter-spacing:-.025em;line-height:1.15}
+.h-title em{color:var(--gold);font-style:normal}
+.h-sub{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.55}
+.h-badges{display:flex;gap:10px;flex-shrink:0}
+.hbadge{background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:12px 17px;text-align:center;min-width:100px}
+.hb-l{font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.hb-v{font-size:19px;font-weight:800;color:var(--deep);letter-spacing:-.02em}
+.hb-s{font-size:10px;color:var(--muted);margin-top:2px}
 
-.tabs { display: flex; }
-.tab { font-family: var(--font); font-size: 12px; font-weight: 500; color: var(--muted); padding: 12px 20px; border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; letter-spacing: 0.02em; transition: color 0.15s, border-color 0.15s; }
-.tab:hover { color: var(--text); }
-.tab.active { color: var(--accent); border-bottom-color: var(--gold); font-weight: 600; }
+/* TABS */
+.tabs{display:flex;border-top:1px solid var(--border);margin-top:4px}
+.tab{font-family:var(--font);font-size:12px;font-weight:500;color:var(--muted);padding:13px 22px;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;letter-spacing:.02em;transition:color .15s,border-color .15s;margin-bottom:-1px}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--deep);border-bottom-color:var(--gold);font-weight:700}
 
-.page { max-width: 1200px; margin: 0 auto; padding: 32px 40px 60px; }
+/* PAGE */
+.page{max-width:1240px;margin:0 auto;padding:30px 40px 60px}
+.panel{display:none}.panel.active{display:block}
 
-.alert { border-radius: 8px; padding: 14px 18px; font-size: 12px; line-height: 1.6; margin-bottom: 24px; display: flex; gap: 12px; align-items: flex-start; }
-.alert-warn { background: var(--warn-light); border: 1px solid #f5c6c2; color: #922b21; }
+/* ALERTS */
+.alert{border-radius:8px;padding:13px 17px;font-size:12px;line-height:1.65;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start}
+.a-warn{background:var(--red-lt);border:1px solid #f3c0c0;color:#8b2020}
+.a-info{background:var(--gold-lt);border:1px solid var(--gold-bd);color:#7a5010}
+.a-ok{background:var(--green-lt);border:1px solid #9fe0c0;color:#0d5c38}
+.alert strong{font-weight:700}
 
-.kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
-.kpi { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; position: relative; overflow: hidden; }
-.kpi::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--ka); border-radius: 10px 10px 0 0; }
-.kpi-label { font-family: var(--mono); font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
-.kpi-val { font-size: 23px; font-weight: 700; letter-spacing: -0.02em; color: var(--ka); }
-.kpi-sub { font-size: 11px; color: var(--muted); margin-top: 5px; }
+/* KPI ROW */
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px}
+.kpi{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--ka);border-radius:10px 10px 0 0}
+.kpi-l{font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px}
+.kpi-v{font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--ka)}
+.kpi-s{font-size:11px;color:var(--muted);margin-top:4px}
 
-.market-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
-.mcard { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px; position: relative; overflow: hidden; }
-.mcard-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 10px 10px 0 0; }
-.mcard-flag { font-size: 22px; margin: 6px 0 8px; }
-.mcard-name { font-size: 13px; font-weight: 700; }
-.mcard-budget { font-size: 21px; font-weight: 700; margin: 8px 0 2px; }
-.mcard-pct { font-family: var(--mono); font-size: 10px; color: var(--muted); }
-.mcard-div { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
-.mcard-row { display: flex; justify-content: space-between; font-size: 11px; padding: 3px 0; }
-.mcard-row span:first-child { color: var(--muted); }
-.mcard-row span:last-child { font-weight: 600; }
-.tag { display: inline-block; margin-top: 10px; font-family: var(--mono); font-size: 9px; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.06em; }
-.tag-ok { background: var(--success-light); color: var(--hk); }
-.tag-warn { background: var(--warn-light); color: var(--warn); }
-.tag-neutral { background: var(--soft); color: var(--muted); }
+/* ALLOCATION HERO */
+.alloc-hero{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:22px}
+.alloc-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:22px;position:relative;overflow:hidden}
+.alloc-card.primary{border:2px solid var(--gold)}
+.ac-bar{position:absolute;top:0;left:0;right:0;height:4px;border-radius:12px 12px 0 0}
+.ac-label{font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.ac-kw{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;line-height:1.3}
+.ac-mkt{display:flex;gap:6px;margin:8px 0 10px;flex-wrap:wrap}
+.mkt-pill{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px}
+.ac-div{border:none;border-top:1px solid var(--border);margin:12px 0}
+.ac-row{display:flex;justify-content:space-between;font-size:11px;padding:3px 0}
+.ac-row span:first-child{color:var(--muted)}
+.ac-row span:last-child{font-weight:700}
+.ac-budget{font-size:26px;font-weight:800;letter-spacing:-.025em;margin:10px 0 4px}
+.ac-pct-bar{height:7px;background:var(--soft);border-radius:4px;margin:10px 0 5px;overflow:hidden;border:1px solid var(--border)}
+.ac-pct-fill{height:100%;border-radius:4px}
+.ac-pct-label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--muted)}
+.tag{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:9px;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.06em;font-weight:500}
+.tag-ok{background:var(--green-lt);color:var(--hk)}
+.tag-warn{background:var(--red-lt);color:var(--red)}
+.tag-gold{background:var(--gold-lt);color:#7a5010;border:1px solid var(--gold-bd)}
+.tag-neutral{background:var(--soft);color:var(--muted)}
 
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-.card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
-.card-title { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-.card-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-.full { grid-column: 1 / -1; margin-bottom: 16px; }
+/* GRID */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
 
-.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 14px; }
-.legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
-.legend-sq { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+/* CARD */
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px;margin-bottom:16px}
+.ct{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.ct::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
 
-.tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
-.tbl thead th { font-family: var(--mono); font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; padding: 0 12px 10px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
-.tbl tbody tr:hover { background: var(--soft); }
-.tbl tbody td { padding: 11px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-.tbl tbody tr:last-child td { border-bottom: none; }
-.mono { font-family: var(--mono); font-size: 11px; color: var(--muted); }
-.pill { display: inline-block; font-family: var(--mono); font-size: 9px; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; }
-.pill-near { background: var(--gold-light); color: #8a6420; border: 1px solid #e8c87a; }
-.pill-partial { background: var(--warn-light); color: var(--warn); border: 1px solid #f5c6c2; }
-.pill-over { background: var(--soft); color: var(--muted); border: 1px solid var(--border); }
-.pill-medium { background: #edf3fd; color: #1e5fa8; border: 1px solid #b5d4f4; }
-.pill-high { background: var(--warn-light); color: var(--warn); border: 1px solid #f5c6c2; }
-.mkt-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+/* LEGEND */
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+.li{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}
+.ls{width:10px;height:10px;border-radius:2px;flex-shrink:0}
 
-.bar-row { margin-bottom: 14px; }
-.bar-top { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; }
-.bar-label { color: var(--text); font-weight: 500; display: flex; align-items: center; gap: 6px; font-size: 12px; }
-.bar-amt { font-family: var(--mono); font-size: 11px; color: var(--muted); }
-.bar-track { height: 6px; background: var(--soft); border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
-.bar-fill { height: 100%; border-radius: 4px; }
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl thead th{font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:0 12px 10px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;font-weight:500}
+.tbl tbody tr{transition:background .1s}.tbl tbody tr:hover{background:var(--soft)}
+.tbl tbody td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.tbl tbody tr:last-child td{border-bottom:none}
+.mono{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.pill{display:inline-block;font-family:var(--mono);font-size:9px;padding:3px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.05em;font-weight:500;white-space:nowrap}
+.p-ok{background:var(--green-lt);color:var(--hk);border:1px solid #9fe0c0}
+.p-gold{background:var(--gold-lt);color:#7a5010;border:1px solid var(--gold-bd)}
+.p-med{background:#edf3fd;color:var(--sg);border:1px solid #b5d0f0}
+.p-warn{background:var(--red-lt);color:var(--red);border:1px solid #f3c0c0}
+.p-grey{background:var(--soft);color:var(--muted);border:1px solid var(--border)}
+.p-high{background:var(--red-lt);color:var(--red);border:1px solid #f3c0c0}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:5px}
 
-.donut-wrap { position: relative; }
-.donut-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; pointer-events: none; }
-.donut-center-val { font-size: 19px; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
-.donut-center-sub { font-family: var(--mono); font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+/* DONUT */
+.dc-wrap{position:relative}
+.dc-ctr{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
+.dc-val{font-size:19px;font-weight:800;color:var(--deep);letter-spacing:-.02em}
+.dc-sub{font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
 
-.insight-row { display: flex; flex-direction: column; gap: 10px; }
-.insight-item { display: flex; gap: 10px; align-items: flex-start; background: var(--soft); border-radius: 8px; padding: 12px 14px; font-size: 12px; line-height: 1.55; }
-.insight-num { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+/* INSIGHT */
+.ins-list{display:flex;flex-direction:column;gap:10px}
+.ins{display:flex;gap:10px;align-items:flex-start;background:var(--soft);border-radius:8px;padding:12px 14px;font-size:12px;line-height:1.6}
+.ins-n{width:20px;height:20px;border-radius:50%;background:var(--deep);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 
-.footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-.footer-note { font-family: var(--mono); font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+/* BUDGET PROGRESS BAR */
+.budget-meter{margin:0 0 22px}
+.bm-label{display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px}
+.bm-track{height:12px;background:var(--soft);border-radius:6px;overflow:hidden;border:1px solid var(--border);display:flex}
+.bm-seg{height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:#fff;font-weight:600;transition:width .3s;white-space:nowrap;overflow:hidden}
+
+.footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.fn{font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 </style>
 </head>
 <body>
 
+<!-- TOPBAR -->
 <div class="topbar">
-  <div class="topbar-brand">
-    <div class="topbar-logo">ADS</div>
-    <div class="topbar-name">Google Ads · Generic Keyword Budget Plan</div>
+  <div class="tb-l">
+    <div class="tb-logo">FB</div>
+    <div class="tb-name">Fairmont Bangkok Sukhumvit</div>
+    <div class="tb-sep"></div>
+    <div class="tb-sub">Google Ads · Budget Forecast · Paid Media</div>
   </div>
-  <div class="topbar-right">NON-BRAND · SG · AU · HK · MY · ฿100,000 / MONTH</div>
+  <div class="tb-r">NON-BRAND · SG · AU · HK · MY · ฿100,000 / MONTH</div>
 </div>
 
-<div class="header">
-  <div class="header-top">
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-top">
     <div>
-      <div class="eyebrow">Budget Allocation Plan · Generic Keywords · Non-Brand</div>
-      <div class="header-title">SG · AU · HK · MY — <span>฿100,000</span> / month</div>
-      <div class="header-sub">Hotel in Bangkok · Exact match · Asia & Pacific targeting</div>
+      <div class="eyebrow">Paid Media · Google Ads Forecast · Generic Keywords · Mar 2026</div>
+      <div class="h-title">฿100,000 / month — <em>Full Allocation Plan</em><br>SG · AU · HK · MY</div>
+      <div class="h-sub">Non-brand · Exact match · Focus: Hotel in Bangkok · Hotel in Sukhumvit · 5-Star Hotel · Hotel near Asok BTS<br>Every baht of the ฿100,000 budget is allocated across 3 keywords &amp; 4 markets below.</div>
     </div>
-    <div class="badge-row">
+    <div class="h-badges">
       <div class="hbadge">
-        <div class="hb-label">Per market</div>
-        <div class="hb-val">฿25K</div>
-        <div class="hb-sub">Equal split</div>
+        <div class="hb-l">Total budget</div>
+        <div class="hb-v">฿100K</div>
+        <div class="hb-s">Hard cap</div>
       </div>
       <div class="hbadge">
-        <div class="hb-label">Daily cap</div>
-        <div class="hb-val">฿833</div>
-        <div class="hb-sub">Per market / day</div>
+        <div class="hb-l">Est. clicks</div>
+        <div class="hb-v">~2,434</div>
+        <div class="hb-s">Per month</div>
       </div>
       <div class="hbadge">
-        <div class="hb-label">Markets</div>
-        <div class="hb-val">4</div>
-        <div class="hb-sub">Active targets</div>
+        <div class="hb-l">Keywords</div>
+        <div class="hb-v">3</div>
+        <div class="hb-s">Active</div>
+      </div>
+      <div class="hbadge">
+        <div class="hb-l">Avg CPC</div>
+        <div class="hb-v">฿41.10</div>
+        <div class="hb-s">Blended</div>
       </div>
     </div>
   </div>
   <div class="tabs">
-    <button class="tab active" onclick="showTab('overview',this)">Overview</button>
-    <button class="tab" onclick="showTab('keywords',this)">Keyword plan</button>
-    <button class="tab" onclick="showTab('insights',this)">Recommendations</button>
+    <button class="tab active" onclick="show('alloc',this)">Allocation plan</button>
+    <button class="tab" onclick="show('forecast',this)">Monthly forecast</button>
+    <button class="tab" onclick="show('keywords',this)">All keyword data</button>
+    <button class="tab" onclick="show('strategy',this)">Strategy &amp; recommendations</button>
   </div>
 </div>
 
 <div class="page">
 
-  <!-- OVERVIEW -->
-  <div id="tab-overview">
-    <div class="alert alert-warn">
-      <span style="font-size:14px;flex-shrink:0;margin-top:1px">⚠</span>
-      <div><strong>Budget constraint alert:</strong> Every keyword with 328+ daily searches costs ฿235K–฿620K/month per market — exceeding the entire total budget. Only niche keywords (33 daily searches) fit within ฿25K per market. SG &amp; AU budgets will exhaust within the first 2 weeks on any standard keyword.</div>
+<!-- ══════════ ALLOCATION PLAN ══════════ -->
+<div id="panel-alloc" class="panel active">
+
+  <div class="alert a-ok">
+    <span style="font-size:14px;flex-shrink:0;margin-top:1px">✓</span>
+    <div><strong>Budget fully allocated:</strong> ฿100,000 is distributed across 3 keywords and 4 markets — ฿79,675 to HK &amp; MY (2 keywords, full month), ฿20,325 to SG &amp; AU (1 keyword, partial month at ฿678/day). Zero waste, zero overrun.</div>
+  </div>
+
+  <!-- Budget meter -->
+  <div class="budget-meter">
+    <div class="bm-label">
+      <span style="font-weight:600;font-size:13px">฿100,000 budget — full allocation breakdown</span>
+      <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">฿100,000 / ฿100,000 used</span>
+    </div>
+    <div class="bm-track">
+      <div class="bm-seg" style="width:35.7%;background:var(--hk)">฿35,709</div>
+      <div class="bm-seg" style="width:44%;background:var(--my)">฿43,966</div>
+      <div class="bm-seg" style="width:20.3%;background:var(--sg)">฿20,325</div>
+    </div>
+    <div style="display:flex;gap:18px;margin-top:7px">
+      <div class="li"><div class="ls" style="background:var(--hk)"></div>hotel near asok station (HK/MY) — ฿35,709</div>
+      <div class="li"><div class="ls" style="background:var(--my)"></div>luxury hotel bangkok (HK/MY) — ฿43,966</div>
+      <div class="li"><div class="ls" style="background:var(--sg)"></div>best place to stay in bangkok (SG/AU) — ฿20,325</div>
+    </div>
+  </div>
+
+  <!-- Allocation hero cards -->
+  <div class="alloc-hero">
+
+    <!-- KW1 -->
+    <div class="alloc-card primary">
+      <div class="ac-bar" style="background:var(--hk)"></div>
+      <div class="ac-label">Keyword 1 · HK &amp; MY · Full month</div>
+      <div class="ac-kw">hotel near asok station</div>
+      <div class="ac-mkt">
+        <span class="mkt-pill" style="background:#edf6f1;color:var(--hk)"><span style="width:7px;height:7px;border-radius:50%;background:var(--hk);flex-shrink:0"></span>🇭🇰 HK</span>
+        <span class="mkt-pill" style="background:#edf6f1;color:var(--my)"><span style="width:7px;height:7px;border-radius:50%;background:var(--my);flex-shrink:0"></span>🇲🇾 MY</span>
+      </div>
+      <div class="ac-budget" style="color:var(--hk)">฿35,709</div>
+      <div class="ac-pct-bar"><div class="ac-pct-fill" style="width:35.7%;background:var(--hk)"></div></div>
+      <div class="ac-pct-label"><span>35.7% of budget</span><span>Full month · 30 days</span></div>
+      <hr class="ac-div">
+      <div class="ac-row"><span>Avg CPC</span><span>฿36.07</span></div>
+      <div class="ac-row"><span>Monthly searches</span><span>1,000</span></div>
+      <div class="ac-row"><span>Est. daily searches</span><span>33</span></div>
+      <div class="ac-row"><span>Est. clicks / month</span><span style="color:var(--hk)">~990 clicks</span></div>
+      <div class="ac-row"><span>Est. clicks / day</span><span>~33 clicks</span></div>
+      <div class="ac-row"><span>Daily budget</span><span>฿1,190 / day</span></div>
+      <div class="ac-row"><span>Coverage of search vol</span><span style="color:var(--hk)">100% full month</span></div>
+      <div class="tag tag-ok">Full month coverage</div>
     </div>
 
-    <div class="kpi-strip">
-      <div class="kpi" style="--ka:#c9973a">
-        <div class="kpi-label">Total monthly budget</div>
-        <div class="kpi-val">฿100,000</div>
-        <div class="kpi-sub">Hard cap · all markets</div>
+    <!-- KW2 -->
+    <div class="alloc-card primary">
+      <div class="ac-bar" style="background:var(--my)"></div>
+      <div class="ac-label">Keyword 2 · HK &amp; MY · Full month</div>
+      <div class="ac-kw">luxury hotel bangkok</div>
+      <div class="ac-mkt">
+        <span class="mkt-pill" style="background:#edf6f1;color:var(--hk)"><span style="width:7px;height:7px;border-radius:50%;background:var(--hk);flex-shrink:0"></span>🇭🇰 HK</span>
+        <span class="mkt-pill" style="background:#edf6f1;color:var(--my)"><span style="width:7px;height:7px;border-radius:50%;background:var(--my);flex-shrink:0"></span>🇲🇾 MY</span>
       </div>
-      <div class="kpi" style="--ka:#1a7a5e">
-        <div class="kpi-label">Per market allocation</div>
-        <div class="kpi-val">฿25,000</div>
-        <div class="kpi-sub">Equal split · 4 markets</div>
-      </div>
-      <div class="kpi" style="--ka:#1e5fa8">
-        <div class="kpi-label">Est. total clicks / month</div>
-        <div class="kpi-val">~2,860</div>
-        <div class="kpi-sub">Across all active keywords</div>
-      </div>
-      <div class="kpi" style="--ka:#c0392b">
-        <div class="kpi-label">Blended avg CPC</div>
-        <div class="kpi-val">฿34.97</div>
-        <div class="kpi-sub">Weighted across markets</div>
-      </div>
+      <div class="ac-budget" style="color:var(--my)">฿43,966</div>
+      <div class="ac-pct-bar"><div class="ac-pct-fill" style="width:44%;background:var(--my)"></div></div>
+      <div class="ac-pct-label"><span>44.0% of budget</span><span>Full month · 30 days</span></div>
+      <hr class="ac-div">
+      <div class="ac-row"><span>Avg CPC</span><span>฿44.41</span></div>
+      <div class="ac-row"><span>Monthly searches</span><span>1,000</span></div>
+      <div class="ac-row"><span>Est. daily searches</span><span>33</span></div>
+      <div class="ac-row"><span>Est. clicks / month</span><span style="color:var(--my)">~990 clicks</span></div>
+      <div class="ac-row"><span>Est. clicks / day</span><span>~33 clicks</span></div>
+      <div class="ac-row"><span>Daily budget</span><span>฿1,465 / day</span></div>
+      <div class="ac-row"><span>Coverage of search vol</span><span style="color:var(--my)">100% full month</span></div>
+      <div class="tag tag-ok">Full month coverage</div>
     </div>
 
-    <div class="market-grid">
-      <div class="mcard">
-        <div class="mcard-bar" style="background:var(--hk)"></div>
-        <div class="mcard-flag">🇭🇰</div>
-        <div class="mcard-name">Hong Kong</div>
-        <div class="mcard-budget" style="color:var(--hk)">฿25,000</div>
-        <div class="mcard-pct">25% of total budget</div>
-        <hr class="mcard-div">
-        <div class="mcard-row"><span>Best keyword</span><span>sukhumvit 20 hotel</span></div>
-        <div class="mcard-row"><span>Avg CPC</span><span>฿27.81</span></div>
-        <div class="mcard-row"><span>Est. clicks/day</span><span>~30 clicks</span></div>
-        <div class="mcard-row"><span>Daily cap</span><span>฿833</span></div>
-        <div class="tag tag-ok">Lowest CPC</div>
+    <!-- KW3 -->
+    <div class="alloc-card">
+      <div class="ac-bar" style="background:var(--sg)"></div>
+      <div class="ac-label">Keyword 3 · SG &amp; AU · Partial month</div>
+      <div class="ac-kw">best place to stay in bangkok</div>
+      <div class="ac-mkt">
+        <span class="mkt-pill" style="background:#edf3fd;color:var(--sg)"><span style="width:7px;height:7px;border-radius:50%;background:var(--sg);flex-shrink:0"></span>🇸🇬 SG</span>
+        <span class="mkt-pill" style="background:#edf3fd;color:var(--au)"><span style="width:7px;height:7px;border-radius:50%;background:var(--au);flex-shrink:0"></span>🇦🇺 AU</span>
       </div>
-      <div class="mcard">
-        <div class="mcard-bar" style="background:var(--my)"></div>
-        <div class="mcard-flag">🇲🇾</div>
-        <div class="mcard-name">Malaysia</div>
-        <div class="mcard-budget" style="color:var(--my)">฿25,000</div>
-        <div class="mcard-pct">25% of total budget</div>
-        <hr class="mcard-div">
-        <div class="mcard-row"><span>Best keyword</span><span>sukhumvit 20 hotel</span></div>
-        <div class="mcard-row"><span>Avg CPC</span><span>฿27.81</span></div>
-        <div class="mcard-row"><span>Est. clicks/day</span><span>~30 clicks</span></div>
-        <div class="mcard-row"><span>Daily cap</span><span>฿833</span></div>
-        <div class="tag tag-neutral">Shared HK pool</div>
-      </div>
-      <div class="mcard">
-        <div class="mcard-bar" style="background:var(--sg)"></div>
-        <div class="mcard-flag">🇸🇬</div>
-        <div class="mcard-name">Singapore</div>
-        <div class="mcard-budget" style="color:var(--sg)">฿25,000</div>
-        <div class="mcard-pct">25% of total budget</div>
-        <hr class="mcard-div">
-        <div class="mcard-row"><span>Best keyword</span><span>best place to stay bkk</span></div>
-        <div class="mcard-row"><span>Avg CPC</span><span>฿44.74</span></div>
-        <div class="mcard-row"><span>Est. clicks/day</span><span>~19 clicks</span></div>
-        <div class="mcard-row"><span>Daily cap</span><span>฿833</span></div>
-        <div class="tag tag-warn">Exhausts ~wk 2</div>
-      </div>
-      <div class="mcard">
-        <div class="mcard-bar" style="background:var(--au)"></div>
-        <div class="mcard-flag">🇦🇺</div>
-        <div class="mcard-name">Australia</div>
-        <div class="mcard-budget" style="color:var(--au)">฿25,000</div>
-        <div class="mcard-pct">25% of total budget</div>
-        <hr class="mcard-div">
-        <div class="mcard-row"><span>Best keyword</span><span>best place to stay bkk</span></div>
-        <div class="mcard-row"><span>Avg CPC</span><span>฿44.74</span></div>
-        <div class="mcard-row"><span>Est. clicks/day</span><span>~19 clicks</span></div>
-        <div class="mcard-row"><span>Daily cap</span><span>฿833</span></div>
-        <div class="tag tag-neutral">Shared SG pool</div>
-      </div>
+      <div class="ac-budget" style="color:var(--sg)">฿20,325</div>
+      <div class="ac-pct-bar"><div class="ac-pct-fill" style="width:20.3%;background:var(--sg)"></div></div>
+      <div class="ac-pct-label"><span>20.3% of budget</span><span>~30 days at ฿678/day</span></div>
+      <hr class="ac-div">
+      <div class="ac-row"><span>Avg CPC</span><span>฿44.74</span></div>
+      <div class="ac-row"><span>Monthly searches</span><span>10,000</span></div>
+      <div class="ac-row"><span>Est. daily searches</span><span>328</span></div>
+      <div class="ac-row"><span>Est. clicks / month</span><span style="color:var(--sg)">~454 clicks</span></div>
+      <div class="ac-row"><span>Est. clicks / day</span><span>~15 clicks</span></div>
+      <div class="ac-row"><span>Daily budget cap</span><span>฿678 / day</span></div>
+      <div class="ac-row"><span>Coverage of search vol</span><span style="color:var(--red)">~4.6% of full month</span></div>
+      <div class="tag tag-warn">Capped · 4.6% share of voice</div>
     </div>
 
-    <div class="two-col">
-      <div class="card">
-        <div class="card-title"><div class="card-dot"></div>Budget split by market</div>
-        <div class="legend">
-          <div class="legend-item"><div class="legend-sq" style="background:var(--hk)"></div>HK ฿25K (25%)</div>
-          <div class="legend-item"><div class="legend-sq" style="background:var(--my)"></div>MY ฿25K (25%)</div>
-          <div class="legend-item"><div class="legend-sq" style="background:var(--sg)"></div>SG ฿25K (25%)</div>
-          <div class="legend-item"><div class="legend-sq" style="background:var(--au)"></div>AU ฿25K (25%)</div>
-        </div>
-        <div class="donut-wrap">
-          <div style="position:relative;height:190px"><canvas id="donutChart"></canvas></div>
-          <div class="donut-center">
-            <div class="donut-center-val">฿100K</div>
-            <div class="donut-center-sub">total / month</div>
-          </div>
-        </div>
+  </div><!-- /alloc-hero -->
+
+  <!-- Summary table -->
+  <div class="card">
+    <div class="ct">Complete allocation summary — ฿100,000 total</div>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Keyword</th><th>Target market</th><th>Avg CPC (฿)</th>
+          <th>Daily searches</th><th>Est. clicks/mo</th>
+          <th>Allocated (฿)</th><th>% of budget</th>
+          <th>Daily spend cap</th><th>Days active</th><th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:700">hotel near asok station</td>
+          <td><span class="dot" style="background:var(--hk)"></span><span class="mono">HK · MY</span></td>
+          <td class="mono">36.07</td><td class="mono">33</td>
+          <td class="mono" style="font-weight:700;color:var(--hk)">~990</td>
+          <td style="font-weight:800;color:var(--hk)">฿35,709</td>
+          <td class="mono">35.7%</td>
+          <td class="mono">฿1,190</td>
+          <td class="mono">30 / 30</td>
+          <td><span class="pill p-ok">Full month</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">luxury hotel bangkok</td>
+          <td><span class="dot" style="background:var(--my)"></span><span class="mono">HK · MY</span></td>
+          <td class="mono">44.41</td><td class="mono">33</td>
+          <td class="mono" style="font-weight:700;color:var(--my)">~990</td>
+          <td style="font-weight:800;color:var(--my)">฿43,966</td>
+          <td class="mono">44.0%</td>
+          <td class="mono">฿1,465</td>
+          <td class="mono">30 / 30</td>
+          <td><span class="pill p-ok">Full month</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">best place to stay in bangkok</td>
+          <td><span class="dot" style="background:var(--sg)"></span><span class="mono">SG · AU</span></td>
+          <td class="mono">44.74</td><td class="mono">328</td>
+          <td class="mono" style="font-weight:700;color:var(--sg)">~454</td>
+          <td style="font-weight:800;color:var(--sg)">฿20,325</td>
+          <td class="mono">20.3%</td>
+          <td class="mono">฿678</td>
+          <td class="mono">30 / 30*</td>
+          <td><span class="pill p-med">Capped daily</span></td>
+        </tr>
+        <tr style="background:#faf9f6;font-weight:700">
+          <td colspan="4" style="font-weight:800;font-size:13px">Total</td>
+          <td class="mono" style="font-weight:800;color:var(--deep)">~2,434</td>
+          <td style="font-weight:800;font-size:14px;color:var(--deep)">฿100,000</td>
+          <td class="mono" style="font-weight:800">100%</td>
+          <td class="mono">฿3,333</td>
+          <td>—</td>
+          <td><span class="pill p-ok">Fully allocated</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px;font-size:11px;color:var(--muted);font-family:var(--mono)">* SG/AU capped at ฿678/day — runs full 30 days at reduced share of voice (~4.6% of available searches)</div>
+  </div>
+
+  <!-- Charts -->
+  <div class="two">
+    <div class="card" style="margin-bottom:0">
+      <div class="ct">Budget allocation by keyword (฿)</div>
+      <div class="legend">
+        <div class="li"><div class="ls" style="background:var(--hk)"></div>hotel near asok (HK/MY)</div>
+        <div class="li"><div class="ls" style="background:var(--my)"></div>luxury hotel bkk (HK/MY)</div>
+        <div class="li"><div class="ls" style="background:var(--sg)"></div>best place to stay (SG/AU)</div>
       </div>
-      <div class="card">
-        <div class="card-title"><div class="card-dot"></div>Avg CPC comparison (฿)</div>
-        <div style="position:relative;height:190px;margin-top:8px"><canvas id="cpcChart"></canvas></div>
+      <div class="dc-wrap">
+        <div style="position:relative;height:210px"><canvas id="allocDonut"></canvas></div>
+        <div class="dc-ctr"><div class="dc-val">฿100K</div><div class="dc-sub">allocated</div></div>
       </div>
     </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="ct">Est. clicks per keyword / month</div>
+      <div style="position:relative;height:210px;margin-top:10px"><canvas id="clicksChart"></canvas></div>
+    </div>
+  </div>
 
-    <div class="card full">
-      <div class="card-title"><div class="card-dot"></div>30-day budget runway simulation</div>
-      <div style="position:relative;height:170px;margin-bottom:24px"><canvas id="runwayChart"></canvas></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
-        <div>
-          <div class="bar-row">
-            <div class="bar-top"><span class="bar-label"><span class="mkt-dot" style="background:var(--hk)"></span>🇭🇰 HK — sukhumvit 20 hotel</span><span class="bar-amt">฿833/day · ~30 clicks</span></div>
-            <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--hk)"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-top"><span class="bar-label"><span class="mkt-dot" style="background:var(--my)"></span>🇲🇾 MY — sukhumvit 20 hotel</span><span class="bar-amt">฿833/day · ~30 clicks</span></div>
-            <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--my)"></div></div>
-          </div>
-        </div>
-        <div>
-          <div class="bar-row">
-            <div class="bar-top"><span class="bar-label"><span class="mkt-dot" style="background:var(--sg)"></span>🇸🇬 SG — best place to stay in bangkok</span><span class="bar-amt">฿833/day · ~19 clicks</span></div>
-            <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--sg)"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-top"><span class="bar-label"><span class="mkt-dot" style="background:var(--au)"></span>🇦🇺 AU — best place to stay in bangkok</span><span class="bar-amt">฿833/day · ~19 clicks</span></div>
-            <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--au)"></div></div>
-          </div>
-        </div>
+</div><!-- /alloc -->
+
+<!-- ══════════ FORECAST ══════════ -->
+<div id="panel-forecast" class="panel">
+
+  <div class="alert a-info">
+    <span style="font-size:14px;flex-shrink:0;margin-top:1px">ℹ</span>
+    <div><strong>Forecast basis:</strong> Monthly cost = Avg CPC × Est. daily searches × 30. Clicks = Allocated ÷ Avg CPC. CTR benchmark for hotel search ads: 3–5%. Conversion rate (booking): ~2–3%. All from Google Ads Keyword Planner export.</div>
+  </div>
+
+  <!-- Monthly performance forecast -->
+  <div class="card">
+    <div class="ct">Monthly performance forecast — ฿100,000 plan</div>
+    <table class="tbl">
+      <thead>
+        <tr><th>Keyword</th><th>Market</th><th>Budget (฿)</th><th>CPC (฿)</th><th>Est. impressions</th><th>Est. clicks</th><th>CTR (est.)</th><th>Est. bookings (2%)</th><th>Cost per booking (฿)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:700">hotel near asok station</td>
+          <td><span class="dot" style="background:var(--hk)"></span><span class="mono">HK/MY</span></td>
+          <td class="mono">35,709</td><td class="mono">36.07</td>
+          <td class="mono">~33,000</td>
+          <td class="mono" style="font-weight:700;color:var(--hk)">990</td>
+          <td class="mono">3.0%</td>
+          <td class="mono" style="font-weight:700">~20</td>
+          <td class="mono">฿1,786</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">luxury hotel bangkok</td>
+          <td><span class="dot" style="background:var(--my)"></span><span class="mono">HK/MY</span></td>
+          <td class="mono">43,966</td><td class="mono">44.41</td>
+          <td class="mono">~33,000</td>
+          <td class="mono" style="font-weight:700;color:var(--my)">990</td>
+          <td class="mono">3.0%</td>
+          <td class="mono" style="font-weight:700">~20</td>
+          <td class="mono">฿2,198</td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">best place to stay in bkk</td>
+          <td><span class="dot" style="background:var(--sg)"></span><span class="mono">SG/AU</span></td>
+          <td class="mono">20,325</td><td class="mono">44.74</td>
+          <td class="mono">~9,840</td>
+          <td class="mono" style="font-weight:700;color:var(--sg)">454</td>
+          <td class="mono">4.6%</td>
+          <td class="mono" style="font-weight:700">~9</td>
+          <td class="mono">฿2,258</td>
+        </tr>
+        <tr style="background:#faf9f6;font-weight:700">
+          <td colspan="2" style="font-weight:800">Total</td>
+          <td class="mono" style="font-weight:800">100,000</td>
+          <td class="mono">41.10</td>
+          <td class="mono" style="font-weight:800">~75,840</td>
+          <td class="mono" style="font-weight:800;color:var(--deep)">~2,434</td>
+          <td class="mono">3.2%</td>
+          <td class="mono" style="font-weight:800;color:var(--hk)">~49</td>
+          <td class="mono" style="font-weight:800">฿2,041</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Runway chart -->
+  <div class="card">
+    <div class="ct">30-day spend runway — cumulative budget burn</div>
+    <div style="position:relative;height:200px;margin-bottom:18px"><canvas id="runwayChart"></canvas></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+      <div style="background:var(--soft);border-radius:8px;padding:14px">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">HK/MY · hotel near asok</div>
+        <div style="font-size:18px;font-weight:800;color:var(--hk)">฿1,190/day</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">Runs all 30 days · ~33 clicks/day</div>
+      </div>
+      <div style="background:var(--soft);border-radius:8px;padding:14px">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">HK/MY · luxury hotel bkk</div>
+        <div style="font-size:18px;font-weight:800;color:var(--my)">฿1,465/day</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">Runs all 30 days · ~33 clicks/day</div>
+      </div>
+      <div style="background:var(--soft);border-radius:8px;padding:14px">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">SG/AU · best place to stay</div>
+        <div style="font-size:18px;font-weight:800;color:var(--sg)">฿678/day</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">Capped · 4.6% share · ~15 clicks/day</div>
       </div>
     </div>
   </div>
 
-  <!-- KEYWORD PLAN -->
-  <div id="tab-keywords" style="display:none">
-    <div class="card full">
-      <div class="card-title"><div class="card-dot"></div>Full keyword allocation — ฿100,000 / month across 4 markets</div>
+  <!-- Budget scenario comparison -->
+  <div class="two">
+    <div class="card" style="margin-bottom:0">
+      <div class="ct">What different budgets unlock</div>
       <table class="tbl">
-        <thead>
-          <tr>
-            <th>Keyword</th><th>Market</th><th>Competition</th><th>Avg CPC (฿)</th><th>Daily searches</th><th>Full monthly cost (฿)</th><th>Allocated (฿)</th><th>Coverage</th><th>Status</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Budget</th><th>Keywords</th><th>Est. clicks / mo</th><th>Verdict</th></tr></thead>
         <tbody>
-          <tr>
-            <td>sukhumvit 20 hotel</td>
-            <td><span class="mkt-dot" style="background:var(--hk)"></span><span class="mono">HK / MY</span></td>
-            <td><span class="pill pill-medium">Medium</span></td>
-            <td class="mono">27.81</td><td class="mono">33</td><td class="mono">27,531</td>
-            <td style="font-weight:700;color:var(--hk)">25,000</td><td class="mono">91%</td>
-            <td><span class="pill pill-near">Near full</span></td>
-          </tr>
-          <tr>
-            <td>hotel near asok station</td>
-            <td><span class="mkt-dot" style="background:var(--hk)"></span><span class="mono">HK / MY</span></td>
-            <td><span class="pill pill-high">High</span></td>
-            <td class="mono">36.07</td><td class="mono">33</td><td class="mono">35,709</td>
-            <td style="color:var(--muted)">0</td><td class="mono">0%</td>
-            <td><span class="pill pill-over">Over budget</span></td>
-          </tr>
-          <tr>
-            <td>luxury hotel bangkok</td>
-            <td><span class="mkt-dot" style="background:var(--hk)"></span><span class="mono">HK / MY</span></td>
-            <td><span class="pill pill-high">High</span></td>
-            <td class="mono">44.41</td><td class="mono">33</td><td class="mono">43,965</td>
-            <td style="color:var(--muted)">0</td><td class="mono">0%</td>
-            <td><span class="pill pill-over">Over budget</span></td>
-          </tr>
-          <tr>
-            <td>best place to stay in bangkok</td>
-            <td><span class="mkt-dot" style="background:var(--sg)"></span><span class="mono">SG / AU</span></td>
-            <td><span class="pill pill-high">High</span></td>
-            <td class="mono">44.74</td><td class="mono">328</td><td class="mono">440,242</td>
-            <td style="font-weight:700;color:var(--sg)">25,000</td><td class="mono">6%</td>
-            <td><span class="pill pill-partial">Partial only</span></td>
-          </tr>
-          <tr>
-            <td>bangkok accommodation</td>
-            <td><span class="mkt-dot" style="background:var(--sg)"></span><span class="mono">SG / AU</span></td>
-            <td><span class="pill pill-high">High</span></td>
-            <td class="mono">49.37</td><td class="mono">328</td><td class="mono">485,801</td>
-            <td style="font-weight:700;color:var(--sg)">25,000</td><td class="mono">5%</td>
-            <td><span class="pill pill-partial">Partial only</span></td>
-          </tr>
-          <tr>
-            <td>hotel in bangkok</td>
-            <td><span class="mkt-dot" style="background:var(--sg)"></span><span class="mono">SG / AU</span></td>
-            <td><span class="pill pill-high">High</span></td>
-            <td class="mono">60.76</td><td class="mono">328</td><td class="mono">597,878</td>
-            <td style="color:var(--muted)">0</td><td class="mono">0%</td>
-            <td><span class="pill pill-over">Over budget</span></td>
-          </tr>
-          <tr>
-            <td>hotels in bangkok thailand</td>
-            <td><span class="mkt-dot" style="background:var(--sg)"></span><span class="mono">SG / AU</span></td>
-            <td><span class="pill pill-high">High</span></td>
-            <td class="mono">64.14</td><td class="mono">3,279</td><td class="mono">6,309,452</td>
-            <td style="color:var(--muted)">0</td><td class="mono">&lt;1%</td>
-            <td><span class="pill pill-over">Far over budget</span></td>
-          </tr>
+          <tr style="background:#fff9ee"><td style="font-weight:700;color:var(--gold)">฿100K ← now</td><td>3 keywords · niche</td><td class="mono">~2,434</td><td><span class="pill p-gold">Current plan</span></td></tr>
+          <tr><td style="font-weight:600">฿300K</td><td>5–6 keywords · all mkts</td><td class="mono">~7,000</td><td><span class="pill p-med">Better reach</span></td></tr>
+          <tr><td style="font-weight:600">฿500K</td><td>8 keywords · head terms</td><td class="mono">~12,000</td><td><span class="pill p-ok">Good</span></td></tr>
+          <tr style="background:var(--green-lt)"><td style="font-weight:700;color:var(--hk)">฿1M+</td><td>Full keyword set</td><td class="mono">~25,000</td><td><span class="pill p-ok">Optimal</span></td></tr>
         </tbody>
       </table>
     </div>
-    <div class="two-col">
-      <div class="card">
-        <div class="card-title"><div class="card-dot"></div>Monthly cost vs allocated budget</div>
-        <div style="position:relative;height:220px"><canvas id="compareChart"></canvas></div>
-      </div>
-      <div class="card">
-        <div class="card-title"><div class="card-dot"></div>Coverage % per keyword</div>
-        <div style="position:relative;height:220px"><canvas id="coverageChart"></canvas></div>
-      </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="ct">Clicks vs budget tiers</div>
+      <div style="position:relative;height:175px"><canvas id="tierChart"></canvas></div>
     </div>
   </div>
 
-  <!-- RECOMMENDATIONS -->
-  <div id="tab-insights" style="display:none">
-    <div class="two-col" style="margin-bottom:16px">
-      <div class="card">
-        <div class="card-title"><div class="card-dot"></div>Priority recommendations</div>
-        <div class="insight-row">
-          <div class="insight-item"><div class="insight-num">1</div><div><strong>Skew budget toward HK &amp; MY.</strong> Lowest CPCs (฿27–฿44). Allocating ฿35K each to HK and MY, with ฿15K to SG and ฿5K to AU gives better coverage and more clicks per baht.</div></div>
-          <div class="insight-item"><div class="insight-num">2</div><div><strong>Run niche long-tail keywords only.</strong> "Sukhumvit 20 hotel" and "hotel near asok station" are the only keywords that approach affordability. Head terms are completely out of range at this budget.</div></div>
-          <div class="insight-item"><div class="insight-num">3</div><div><strong>Set strict daily caps at ฿833/market.</strong> Without a hard daily cap, SG/AU budgets exhaust in the first 2 weeks. Ads go dark for the rest of the month — cap prevents this.</div></div>
-          <div class="insight-item"><div class="insight-num">4</div><div><strong>Consider concentrating on HK &amp; MY only.</strong> At ฿25K each, SG and AU buy only 5–6% of a keyword's full month. Putting ฿50K each into HK and MY gives meaningful niche coverage.</div></div>
-          <div class="insight-item"><div class="insight-num">5</div><div><strong>Increase budget to ฿500K+ for real impact.</strong> To run even one mid-tier keyword (328 daily searches) across all 4 markets, you need ~฿1.9M/month. ฿500K unlocks HK/MY head terms meaningfully.</div></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title"><div class="card-dot"></div>Suggested budget redistribution</div>
-        <div class="legend" style="margin-bottom:10px">
-          <div class="legend-item"><div class="legend-sq" style="background:var(--hk)"></div>HK ฿40K (40%)</div>
-          <div class="legend-item"><div class="legend-sq" style="background:var(--my)"></div>MY ฿40K (40%)</div>
-          <div class="legend-item"><div class="legend-sq" style="background:var(--sg)"></div>SG ฿15K (15%)</div>
-          <div class="legend-item"><div class="legend-sq" style="background:var(--au)"></div>AU ฿5K (5%)</div>
-        </div>
-        <div style="position:relative;height:180px;margin-bottom:20px"><canvas id="redistChart"></canvas></div>
-        <div class="alert" style="background:var(--success-light);border:1px solid #9fe1cb;color:#085041;padding:12px 14px;font-size:12px;border-radius:8px">
-          <span style="font-size:13px;flex-shrink:0">&#10003;</span>
-          <span><strong>Recommended split:</strong> HK ฿40K · MY ฿40K · SG ฿15K · AU ฿5K — concentrates spend where CPCs are lowest and reach is most efficient.</span>
-        </div>
+</div><!-- /forecast -->
+
+<!-- ══════════ ALL KEYWORD DATA ══════════ -->
+<div id="panel-keywords" class="panel">
+
+  <div class="alert a-info">
+    <span style="font-size:14px;flex-shrink:0;margin-top:1px">ℹ</span>
+    <div><strong>Full keyword data from Book1.xlsx</strong> — Focus keywords for SG, AU, HK, MY. Sorted by monthly cost. Green rows = within ฿100K budget. Red = exceeds budget.</div>
+  </div>
+
+  <div class="card">
+    <div class="ct">All focus keywords — SG · AU · HK · MY — sorted by monthly cost</div>
+    <table class="tbl">
+      <thead>
+        <tr><th>#</th><th>Keyword</th><th>Market</th><th>Monthly vol</th><th>Daily est.</th><th>Avg CPC (฿)</th><th>Bid low (฿)</th><th>Bid high (฿)</th><th>Full monthly cost (฿)</th><th>vs ฿100K</th><th>Comp.</th></tr>
+      </thead>
+      <tbody id="kw-tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="two">
+    <div class="card" style="margin-bottom:0">
+      <div class="ct">Monthly search volume by keyword</div>
+      <div style="position:relative;height:270px"><canvas id="volChart"></canvas></div>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="ct">Bid range — low vs high (฿)</div>
+      <div style="position:relative;height:270px"><canvas id="bidChart"></canvas></div>
+    </div>
+  </div>
+
+</div><!-- /keywords -->
+
+<!-- ══════════ STRATEGY ══════════ -->
+<div id="panel-strategy" class="panel">
+
+  <div class="two">
+    <div class="card">
+      <div class="ct">Priority recommendations</div>
+      <div class="ins-list">
+        <div class="ins"><div class="ins-n">1</div><div><strong>This plan runs all 30 days on HK/MY.</strong> "Hotel near asok station" (฿35,709) and "luxury hotel bangkok" (฿43,966) are fully funded — ads run every day of the month without stopping. This is the biggest win of the plan.</div></div>
+        <div class="ins"><div class="ins-n">2</div><div><strong>SG/AU is a seed presence only.</strong> ฿20,325 on "best place to stay in bangkok" gives 4.6% share of voice — meaning your ad shows ~1–2 times per 20 searches. Enough for brand visibility, not for volume.</div></div>
+        <div class="ins"><div class="ins-n">3</div><div><strong>Add negative keywords immediately.</strong> Add negatives like "cheap", "budget", "hostel", "agoda", "booking.com" to block irrelevant clicks and protect the budget for high-intent users only.</div></div>
+        <div class="ins"><div class="ins-n">4</div><div><strong>Schedule SG/AU ads for peak booking hours.</strong> Limit to 6pm–11pm SG/AU local time (prime travel research window). This concentrates the ฿678/day SG cap on the highest-converting hours.</div></div>
+        <div class="ins"><div class="ins-n">5</div><div><strong>Use ad extensions to boost CTR without extra cost.</strong> Add sitelinks (Rooms, Spa, Dining, Offers), callout ("Thailand's first Fairmont"), and location extension. Extensions don't cost extra but increase click rate significantly.</div></div>
+        <div class="ins"><div class="ins-n">6</div><div><strong>Increase to ฿300K to unlock head terms.</strong> "Hotel in sukhumvit" (HK/MY ฿52 CPC) and "5 star hotel bangkok" (฿30 CPC) are the next tier. At ฿300K you can add 2–3 more keywords while keeping all current ones fully funded.</div></div>
       </div>
     </div>
-
-    <div class="card full">
-      <div class="card-title"><div class="card-dot"></div>Budget tier scenarios — what each level unlocks</div>
+    <div class="card">
+      <div class="ct">Keyword targeting guide — next phase</div>
       <table class="tbl">
-        <thead>
-          <tr><th>Monthly budget</th><th>Markets accessible</th><th>Keywords possible</th><th>Est. clicks / month</th><th>Verdict</th></tr>
-        </thead>
+        <thead><tr><th>Keyword</th><th>Market</th><th>Monthly cost (฿)</th><th>Budget needed</th><th>Priority</th></tr></thead>
         <tbody>
-          <tr style="background:var(--warn-light)">
-            <td style="font-weight:700;color:var(--warn)">฿100,000 ← current</td>
-            <td>HK / MY only (meaningful)</td>
-            <td>1–2 niche keywords</td>
-            <td class="mono">~1,800 / mo</td>
-            <td>Tight — niche reach only</td>
-          </tr>
-          <tr>
-            <td style="font-weight:600">฿300,000</td>
-            <td>HK + MY + partial SG</td>
-            <td>3–5 niche keywords</td>
-            <td class="mono">~5,400 / mo</td>
-            <td>Better — adds SG reach</td>
-          </tr>
-          <tr>
-            <td style="font-weight:600">฿500,000</td>
-            <td>HK · MY · SG · AU</td>
-            <td>5–8 keywords + 1 mid-volume</td>
-            <td class="mono">~9,000 / mo</td>
-            <td>Good — all 4 markets active</td>
-          </tr>
-          <tr style="background:var(--success-light)">
-            <td style="font-weight:700;color:var(--hk)">฿1,000,000+</td>
-            <td>All 4 markets fully</td>
-            <td>Full generic keyword set</td>
-            <td class="mono">~18,000 / mo</td>
-            <td>Optimal — real volume</td>
-          </tr>
+          <tr style="background:var(--green-lt)"><td style="font-weight:700">hotel near asok station ✓</td><td><span class="mono">HK/MY</span></td><td class="mono">35,709</td><td class="mono" style="color:var(--hk)">In current plan</td><td><span class="pill p-ok">Active</span></td></tr>
+          <tr style="background:var(--green-lt)"><td style="font-weight:700">luxury hotel bangkok ✓</td><td><span class="mono">HK/MY</span></td><td class="mono">43,966</td><td class="mono" style="color:var(--hk)">In current plan</td><td><span class="pill p-ok">Active</span></td></tr>
+          <tr style="background:var(--green-lt)"><td style="font-weight:700">best place to stay bkk ✓</td><td><span class="mono">SG/AU</span></td><td class="mono">440,242</td><td class="mono" style="color:var(--sg)">Capped at ฿20,325</td><td><span class="pill p-med">Capped</span></td></tr>
+          <tr><td style="font-weight:700">bangkok hotels 5 star</td><td><span class="mono">HK/MY</span></td><td class="mono">300,022</td><td class="mono">฿+200K more</td><td><span class="pill p-gold">Next phase</span></td></tr>
+          <tr><td style="font-weight:700">hotel in sukhumvit</td><td><span class="mono">HK/MY</span></td><td class="mono">517,682</td><td class="mono">฿+417K more</td><td><span class="pill p-gold">Next phase</span></td></tr>
+          <tr><td style="font-weight:700">hotel in bangkok</td><td><span class="mono">HK/MY</span></td><td class="mono">391,534</td><td class="mono">฿+291K more</td><td><span class="pill p-grey">Future</span></td></tr>
+          <tr><td style="font-weight:700">hotel in sukhumvit</td><td><span class="mono">SG/AU</span></td><td class="mono">620,707</td><td class="mono">฿+520K more</td><td><span class="pill p-grey">Future</span></td></tr>
         </tbody>
       </table>
+
+      <div class="alert a-ok" style="margin-top:16px;margin-bottom:0">
+        <span style="font-size:13px;flex-shrink:0">✓</span>
+        <div><strong>Bottom line:</strong> At ฿100K, you get 2 fully-funded niche keywords in HK/MY (~1,980 clicks/month) and a capped presence in SG/AU (~454 clicks). To unlock head terms meaningfully, ฿300K–฿500K is the next step.</div>
+      </div>
     </div>
   </div>
 
-  <div class="footer">
-    <div class="footer-note">Source: Google Ads Keyword Planner · Book1.xlsx · Non-Brand Campaign</div>
-    <div class="footer-note">All values in Thai Baht (฿) · Est. based on Avg CPC × Daily Searches × 30</div>
-  </div>
+</div><!-- /strategy -->
+
+<div class="footer">
+  <div class="fn">Source: Google Ads Keyword Planner · Book1.xlsx · Non-Brand · Fairmont Bangkok Sukhumvit</div>
+  <div class="fn">฿ Thai Baht · Est. CPC × Daily Searches × 30 · Updated Mar 2026</div>
 </div>
 
+</div><!-- /page -->
+
 <script>
-Chart.defaults.font.family = "'Montserrat', sans-serif";
-Chart.defaults.font.size = 11;
-Chart.defaults.color = '#8a8780';
-const gc = '#e8e6e1';
+Chart.defaults.font.family="'Montserrat',sans-serif";
+Chart.defaults.font.size=11;
+Chart.defaults.color='#8c8880';
+const gc='#e4e1da';
 
-new Chart(document.getElementById('donutChart'),{type:'doughnut',data:{labels:['HK','MY','SG','AU'],datasets:[{data:[25000,25000,25000,25000],backgroundColor:['#1a7a5e','#1d9e75','#1e5fa8','#2574c4'],borderWidth:3,borderColor:'#fff',hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' ฿'+c.parsed.toLocaleString()+' (25%)'}}}}} );
+// ── KEYWORD TABLE DATA ──
+const kwAll=[
+  {kw:'hotel near asok station',mkt:'HK/MY',col:'#1a6e52',ms:1000,ds:33,cpc:36.07,bl:14.36,bh:57.77,mc:35709,comp:'High'},
+  {kw:'luxury hotel bangkok',mkt:'HK/MY',col:'#1a6e52',ms:1000,ds:33,cpc:44.41,bl:12.93,bh:75.88,mc:43966,comp:'High'},
+  {kw:'bangkok hotels 5 star',mkt:'HK/MY',col:'#1a6e52',ms:10000,ds:328,cpc:30.49,bl:11.22,bh:49.75,mc:300022,comp:'High'},
+  {kw:'hotel in bangkok',mkt:'HK/MY',col:'#1a6e52',ms:10000,ds:328,cpc:39.79,bl:17.13,bh:62.45,mc:391534,comp:'High'},
+  {kw:'hotel in sukhumvit',mkt:'HK/MY',col:'#1a6e52',ms:10000,ds:328,cpc:52.61,bl:14.97,bh:90.25,mc:517682,comp:'High'},
+  {kw:'hotels in bangkok thailand',mkt:'HK/MY',col:'#1a6e52',ms:100000,ds:3279,cpc:39.81,bl:17.17,bh:62.45,mc:3916110,comp:'High'},
+  {kw:'best place to stay in bangkok',mkt:'SG/AU',col:'#1a4f8c',ms:10000,ds:328,cpc:44.74,bl:5.78,bh:83.70,mc:440242,comp:'High'},
+  {kw:'bangkok accommodation',mkt:'SG/AU',col:'#1a4f8c',ms:10000,ds:328,cpc:49.37,bl:21.30,bh:77.44,mc:485801,comp:'High'},
+  {kw:'bangkok hotels 5 star',mkt:'SG/AU',col:'#1a4f8c',ms:10000,ds:328,cpc:56.69,bl:24.04,bh:89.34,mc:557830,comp:'High'},
+  {kw:'luxury hotel in bangkok',mkt:'SG/AU',col:'#1a4f8c',ms:10000,ds:328,cpc:56.92,bl:24.52,bh:89.31,mc:560093,comp:'High'},
+  {kw:'hotel in bangkok',mkt:'SG/AU',col:'#1a4f8c',ms:10000,ds:328,cpc:60.76,bl:27.83,bh:93.68,mc:597878,comp:'High'},
+  {kw:'hotel in sukhumvit',mkt:'SG/AU',col:'#1a4f8c',ms:10000,ds:328,cpc:63.08,bl:25.79,bh:100.36,mc:620707,comp:'High'},
+  {kw:'hotels in bangkok thailand',mkt:'SG/AU',col:'#1a4f8c',ms:100000,ds:3279,cpc:64.14,bl:30.58,bh:97.69,mc:6309452,comp:'High'},
+].sort((a,b)=>a.mc-b.mc);
 
-new Chart(document.getElementById('cpcChart'),{type:'bar',data:{labels:['HK/MY\nniche','SG/AU\nniche','HK/MY\nmid tier','KR-EN\nhead','SG/AU\nhead'],datasets:[{data:[27.81,44.74,68.02,84.31,64.14],backgroundColor:['#1a7a5e','#1e5fa8','rgba(26,122,94,0.25)','rgba(192,57,43,0.2)','rgba(30,95,168,0.25)'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' ฿'+c.parsed.y.toFixed(2)}}},scales:{x:{ticks:{color:'#8a8780',font:{size:10}},grid:{display:false},border:{color:'transparent'}},y:{ticks:{callback:v=>'฿'+v,color:'#8a8780'},grid:{color:gc},border:{color:'transparent'}}}}});
+const tbody=document.getElementById('kw-tbody');
+kwAll.forEach((r,i)=>{
+  const fits=r.mc<=100000;
+  const bg=fits?'background:#f6fdf8':r.mc>500000?'background:#fdf6f6':'';
+  tbody.innerHTML+=`<tr style="${bg}">
+    <td class="mono">${i+1}</td>
+    <td style="font-weight:${fits?'700':'400'}">${r.kw}${fits?' ✓':''}</td>
+    <td><span class="dot" style="background:${r.col}"></span><span class="mono">${r.mkt}</span></td>
+    <td class="mono">${r.ms.toLocaleString()}</td>
+    <td class="mono">${r.ds.toLocaleString()}</td>
+    <td class="mono">${r.cpc.toFixed(2)}</td>
+    <td class="mono">${r.bl.toFixed(2)}</td>
+    <td class="mono">${r.bh.toFixed(2)}</td>
+    <td style="font-weight:700;color:${fits?'#1a6e52':'#b83232'}">฿${Math.round(r.mc).toLocaleString()}</td>
+    <td>${fits?'<span class="pill p-ok">Fits</span>':'<span class="pill p-warn">Over</span>'}</td>
+    <td><span class="pill p-warn">${r.comp}</span></td>
+  </tr>`;
+});
+
+// ── CHARTS ──
+new Chart(document.getElementById('allocDonut'),{type:'doughnut',data:{labels:['hotel near asok (HK/MY)','luxury hotel bkk (HK/MY)','best place to stay (SG/AU)'],datasets:[{data:[35709,43966,20325],backgroundColor:['#1a6e52','#1e9468','#1a4f8c'],borderWidth:3,borderColor:'#fff',hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' ฿'+Math.round(c.parsed).toLocaleString()+'  ('+Math.round(c.parsed/1000)+'%)'}}}}});
+
+new Chart(document.getElementById('clicksChart'),{type:'bar',data:{labels:['hotel near asok\n(HK/MY)','luxury hotel bkk\n(HK/MY)','best place to stay\n(SG/AU)'],datasets:[{data:[990,990,454],backgroundColor:['#1a6e52','#1e9468','#1a4f8c'],borderRadius:5,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' ~'+c.parsed.y+' clicks/month'}}},scales:{x:{ticks:{color:'#8c8880',font:{size:10}},grid:{display:false},border:{color:'transparent'}},y:{ticks:{callback:v=>v,color:'#8c8880'},grid:{color:gc},border:{color:'transparent'}}}}});
 
 const days=Array.from({length:30},(_,i)=>i+1);
-new Chart(document.getElementById('runwayChart'),{type:'line',data:{labels:days.map(d=>'D'+d),datasets:[{label:'HK / MY',data:days.map(i=>Math.max(0,25000-(i*833))),borderColor:'#1a7a5e',backgroundColor:'rgba(26,122,94,0.07)',fill:true,tension:0.3,borderWidth:2,pointRadius:0},{label:'SG / AU',data:days.map(i=>Math.max(0,25000-(i*833))),borderColor:'#1e5fa8',backgroundColor:'rgba(30,95,168,0.07)',fill:true,tension:0.3,borderWidth:2,pointRadius:0,borderDash:[5,3]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:10,boxHeight:3,borderRadius:2,font:{size:10}}},tooltip:{callbacks:{label:c=>' ฿'+Math.round(c.parsed.y).toLocaleString()+' remaining'}}},scales:{x:{ticks:{color:'#8a8780',maxTicksLimit:10,font:{size:9}},grid:{color:gc},border:{color:'transparent'}},y:{ticks:{callback:v=>'฿'+Math.round(v/1000)+'K',color:'#8a8780'},grid:{color:gc},border:{color:'transparent'}}}}});
+new Chart(document.getElementById('runwayChart'),{type:'line',data:{labels:days.map(d=>'D'+d),datasets:[
+  {label:'hotel near asok (HK/MY)',data:days.map(i=>Math.min(35709,i*1190)),borderColor:'#1a6e52',backgroundColor:'rgba(26,110,82,.06)',fill:true,tension:0.3,borderWidth:2,pointRadius:0},
+  {label:'luxury hotel bkk (HK/MY)',data:days.map(i=>Math.min(43966,i*1465)),borderColor:'#1e9468',backgroundColor:'rgba(30,148,104,.06)',fill:true,tension:0.3,borderWidth:2,pointRadius:0,borderDash:[0,0]},
+  {label:'best place to stay (SG/AU)',data:days.map(i=>Math.min(20325,i*678)),borderColor:'#1a4f8c',backgroundColor:'rgba(26,79,140,.06)',fill:true,tension:0.3,borderWidth:2,pointRadius:0,borderDash:[5,3]}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:10,boxHeight:3,borderRadius:2,font:{size:10}}},tooltip:{callbacks:{label:c=>' ฿'+Math.round(c.parsed.y).toLocaleString()+' spent'}}},scales:{x:{ticks:{color:'#8c8880',maxTicksLimit:10,font:{size:9}},grid:{color:gc},border:{color:'transparent'}},y:{ticks:{callback:v=>'฿'+Math.round(v/1000)+'K',color:'#8c8880'},grid:{color:gc},border:{color:'transparent'}}}}});
 
-new Chart(document.getElementById('compareChart'),{type:'bar',data:{labels:['sukhumvit\n20 hotel','hotel near\nasok','best place\nto stay','bangkok\naccommodation'],datasets:[{label:'Full monthly cost',data:[27531,35709,440242,485801],backgroundColor:'rgba(192,57,43,0.12)',borderColor:'#c0392b',borderWidth:1.5,borderRadius:4},{label:'Allocated',data:[25000,0,25000,25000],backgroundColor:'#1a7a5e',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:10,boxHeight:10,borderRadius:2,font:{size:10}}},tooltip:{callbacks:{label:c=>' ฿'+Math.round(c.parsed.y).toLocaleString()}}},scales:{x:{ticks:{color:'#8a8780',font:{size:9}},grid:{display:false},border:{color:'transparent'}},y:{ticks:{callback:v=>v>=1000?'฿'+Math.round(v/1000)+'K':'฿'+v,color:'#8a8780'},grid:{color:gc},border:{color:'transparent'}}}}});
+new Chart(document.getElementById('tierChart'),{type:'bar',data:{labels:['฿100K\n(now)','฿300K','฿500K','฿1M+'],datasets:[{data:[2434,7000,12000,25000],backgroundColor:['#e8c87a','#1e9468','#1a6e52','#1a3328'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' ~'+c.parsed.y.toLocaleString()+' clicks/mo'}}},scales:{x:{ticks:{color:'#8c8880',font:{size:10}},grid:{display:false},border:{color:'transparent'}},y:{ticks:{callback:v=>v>=1000?v/1000+'K':v,color:'#8c8880'},grid:{color:gc},border:{color:'transparent'}}}}});
 
-new Chart(document.getElementById('coverageChart'),{type:'bar',data:{labels:['sukhumvit 20 hotel','hotel near asok','best place to stay','bangkok accommodation','hotels in bkk thailand'],datasets:[{data:[91,0,6,5,0],backgroundColor:['#1a7a5e','#e8e6e1','#1e5fa8','#2574c4','#e8e6e1'],borderRadius:4,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.parsed.x+'% covered'}}},scales:{x:{ticks:{callback:v=>v+'%',color:'#8a8780',font:{size:10}},grid:{color:gc},border:{color:'transparent'},max:100},y:{ticks:{color:'#8a8780',font:{size:10}},grid:{display:false},border:{color:'transparent'}}}}});
+new Chart(document.getElementById('volChart'),{type:'bar',data:{
+  labels:kwAll.slice(0,8).map(r=>r.kw.length>22?r.kw.slice(0,22)+'…':r.kw),
+  datasets:[{data:kwAll.slice(0,8).map(r=>r.ms),backgroundColor:kwAll.slice(0,8).map(r=>r.col+'99'),borderRadius:4,borderSkipped:false}]
+},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.parsed.x.toLocaleString()+' searches/mo'}}},scales:{x:{ticks:{callback:v=>v>=1000?v/1000+'K':v,color:'#8c8880',font:{size:10}},grid:{color:gc},border:{color:'transparent'}},y:{ticks:{color:'#8c8880',font:{size:10}},grid:{display:false},border:{color:'transparent'}}}}});
 
-new Chart(document.getElementById('redistChart'),{type:'doughnut',data:{labels:['HK ฿40K','MY ฿40K','SG ฿15K','AU ฿5K'],datasets:[{data:[40000,40000,15000,5000],backgroundColor:['#1a7a5e','#1d9e75','#1e5fa8','#2574c4'],borderWidth:3,borderColor:'#fff',hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' ฿'+c.parsed.toLocaleString()}}}}});
+new Chart(document.getElementById('bidChart'),{type:'bar',data:{
+  labels:kwAll.slice(0,8).map(r=>r.kw.length>22?r.kw.slice(0,22)+'…':r.kw),
+  datasets:[
+    {label:'Bid low',data:kwAll.slice(0,8).map(r=>r.bl),backgroundColor:'rgba(26,110,82,.35)',borderRadius:0,borderSkipped:false},
+    {label:'Bid high',data:kwAll.slice(0,8).map(r=>r.bh),backgroundColor:'rgba(26,79,140,.35)',borderRadius:4,borderSkipped:false}
+  ]
+},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:10,boxHeight:10,borderRadius:2,font:{size:10}}},tooltip:{callbacks:{label:c=>' ฿'+c.parsed.x.toFixed(2)}}},scales:{x:{ticks:{callback:v=>'฿'+v,color:'#8c8880',font:{size:10}},grid:{color:gc},border:{color:'transparent'}},y:{ticks:{color:'#8c8880',font:{size:10}},grid:{display:false},border:{color:'transparent'}}}}});
 
-function showTab(id,btn){
-  ['overview','keywords','insights'].forEach(t=>{document.getElementById('tab-'+t).style.display=t===id?'block':'none';});
+// ── TABS ──
+function show(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
 }
