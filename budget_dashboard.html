@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>฿100K Budget Dashboard — Asia & Australia</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0c0f;
+    --surface: #12151a;
+    --surface2: #1a1e26;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0f0ee;
+    --muted: #6b7280;
+    --accent-hk: #00c897;
+    --accent-my: #00a87a;
+    --accent-sg: #4d9fff;
+    --accent-au: #1a73e8;
+    --gold: #f0b429;
+    --warn: #ff6b35;
+    --font-display: 'Montserrat', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* Grid lines background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 40px 32px 60px; }
+
+  /* Header */
+  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 40px; }
+  .header-left {}
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+  .title { font-family: var(--font-display); font-size: 36px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+  .title span { color: var(--gold); }
+  .subtitle { font-size: 13px; color: var(--muted); margin-top: 8px; font-weight: 300; }
+  .header-badge {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    padding: 12px 20px;
+    text-align: right;
+  }
+  .badge-label { font-family: var(--font-mono); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .badge-val { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--gold); margin-top: 2px; }
+  .badge-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* KPI row */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+  .kpi {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .kpi::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0.8;
+  }
+  .kpi:hover { border-color: var(--border2); }
+  .kpi-label { font-family: var(--font-mono); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .kpi-val { font-family: var(--font-display); font-size: 26px; font-weight: 700; line-height: 1; }
+  .kpi-sub { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+  /* Main grid */
+  .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .full-width { grid-column: 1 / -1; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    position: relative;
+  }
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  /* Market allocation cards */
+  .market-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  .market-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .market-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--mc);
+  }
+  .market-flag { font-size: 22px; margin-bottom: 10px; }
+  .market-name { font-family: var(--font-display); font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+  .market-budget { font-family: var(--font-mono); font-size: 20px; font-weight: 500; color: var(--mc); margin: 8px 0 4px; }
+  .market-pct { font-size: 11px; color: var(--muted); }
+  .market-divider { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+  .market-detail { font-size: 11px; color: var(--muted); line-height: 1.6; }
+  .market-detail strong { color: var(--text); font-weight: 500; }
+  .market-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-top: 8px;
+    background: rgba(255,255,255,0.05);
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* Keyword table */
+  .kw-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .kw-table thead th {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0 12px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .kw-table thead th:last-child { text-align: right; }
+  .kw-table tbody tr { transition: background 0.15s; }
+  .kw-table tbody tr:hover { background: rgba(255,255,255,0.03); }
+  .kw-table tbody td {
+    padding: 11px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .kw-table tbody tr:last-child td { border-bottom: none; }
+  .kw-name { font-weight: 400; color: var(--text); }
+  .kw-market { display: inline-flex; align-items: center; gap: 6px; }
+  .kw-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .kw-cpc { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+  .kw-alloc { font-family: var(--font-mono); font-size: 12px; font-weight: 500; text-align: right; }
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .pill-capped { background: rgba(240,180,41,0.12); color: var(--gold); border: 1px solid rgba(240,180,41,0.2); }
+  .pill-partial { background: rgba(255,107,53,0.1); color: var(--warn); border: 1px solid rgba(255,107,53,0.2); }
+  .pill-full { background: rgba(0,200,151,0.1); color: var(--accent-hk); border: 1px solid rgba(0,200,151,0.2); }
+
+  /* Bar */
+  .bar-row { margin-bottom: 14px; }
+  .bar-top { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; }
+  .bar-name { color: var(--text); }
+  .bar-amt { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+  .bar-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; position: relative; }
+
+  /* Donut center label */
+  .donut-wrap { position: relative; }
+  .donut-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center-val { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--gold); }
+  .donut-center-label { font-family: var(--font-mono); font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+
+  /* Warning bar */
+  .warning-strip {
+    background: rgba(255,107,53,0.07);
+    border: 1px solid rgba(255,107,53,0.18);
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 12px;
+    color: #ffb89a;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.6;
+  }
+  .warning-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+  /* Legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 14px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
+  .legend-sq { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  /* Fade in animation */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+  .kpi, .market-card, .card { animation: fadeUp 0.4s ease both; }
+  .kpi:nth-child(1) { animation-delay: 0.05s; }
+  .kpi:nth-child(2) { animation-delay: 0.1s; }
+  .kpi:nth-child(3) { animation-delay: 0.15s; }
+  .kpi:nth-child(4) { animation-delay: 0.2s; }
+  .market-card:nth-child(1) { animation-delay: 0.25s; }
+  .market-card:nth-child(2) { animation-delay: 0.3s; }
+  .market-card:nth-child(3) { animation-delay: 0.35s; }
+  .market-card:nth-child(4) { animation-delay: 0.4s; }
+
+  /* Footer */
+  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-note { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="eyebrow">Non-Brand Keywords · Asia &amp; Pacific</div>
+      <h1 class="title">Budget Allocation<br><span>฿100,000</span> / month</h1>
+      <div class="subtitle">Targeting SG · AU · HK · MY — Generic keyword strategy</div>
+    </div>
+    <div class="header-badge">
+      <div class="badge-label">Daily cap</div>
+      <div class="badge-val">฿3,333</div>
+      <div class="badge-sub">per day across all markets</div>
+    </div>
+  </div>
+
+  <!-- Warning -->
+  <div class="warning-strip">
+    <div class="warning-icon">&#9888;</div>
+    <div>
+      <strong style="color:#ff6b35">Budget constraint alert:</strong> High-traffic head terms (328+ daily searches) cost ฿235K–฿620K/month per market — exceeding the entire monthly budget. Only niche keywords with 33 daily searches fit within ฿25K per market. SG/AU budgets will exhaust within the first week on any keyword.
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <div class="kpi" style="--accent: var(--gold)">
+      <div class="kpi-label">Total monthly budget</div>
+      <div class="kpi-val" style="color:var(--gold)">฿100K</div>
+      <div class="kpi-sub">Hard cap — all markets</div>
+    </div>
+    <div class="kpi" style="--accent: var(--accent-hk)">
+      <div class="kpi-label">Per market allocation</div>
+      <div class="kpi-val" style="color:var(--accent-hk)">฿25K</div>
+      <div class="kpi-sub">Equal split across 4 markets</div>
+    </div>
+    <div class="kpi" style="--accent: var(--accent-sg)">
+      <div class="kpi-label">Est. total clicks / month</div>
+      <div class="kpi-val" style="color:var(--accent-sg)">~2,860</div>
+      <div class="kpi-sub">Across all active keywords</div>
+    </div>
+    <div class="kpi" style="--accent: var(--warn)">
+      <div class="kpi-label">Avg. cost per click</div>
+      <div class="kpi-val" style="color:var(--warn)">฿34.97</div>
+      <div class="kpi-sub">Blended across all markets</div>
+    </div>
+  </div>
+
+  <!-- Market Cards -->
+  <div class="market-grid">
+    <div class="market-card" style="--mc: var(--accent-hk)">
+      <div class="market-flag">🇭🇰</div>
+      <div class="market-name">Hong Kong</div>
+      <div class="market-budget">฿25,000</div>
+      <div class="market-pct">25% of total budget</div>
+      <hr class="market-divider">
+      <div class="market-detail">
+        <strong>Best keyword:</strong> sukhumvit 20 hotel<br>
+        <strong>Avg CPC:</strong> ฿27.81<br>
+        <strong>Est. clicks/day:</strong> ~30<br>
+        <strong>Daily cap:</strong> ฿833
+      </div>
+      <div class="market-tag">Lowest CPC</div>
+    </div>
+    <div class="market-card" style="--mc: var(--accent-my)">
+      <div class="market-flag">🇲🇾</div>
+      <div class="market-name">Malaysia</div>
+      <div class="market-budget">฿25,000</div>
+      <div class="market-pct">25% of total budget</div>
+      <hr class="market-divider">
+      <div class="market-detail">
+        <strong>Best keyword:</strong> sukhumvit 20 hotel<br>
+        <strong>Avg CPC:</strong> ฿27.81<br>
+        <strong>Est. clicks/day:</strong> ~30<br>
+        <strong>Daily cap:</strong> ฿833
+      </div>
+      <div class="market-tag">Shared HK pool</div>
+    </div>
+    <div class="market-card" style="--mc: var(--accent-sg)">
+      <div class="market-flag">🇸🇬</div>
+      <div class="market-name">Singapore</div>
+      <div class="market-budget">฿25,000</div>
+      <div class="market-pct">25% of total budget</div>
+      <hr class="market-divider">
+      <div class="market-detail">
+        <strong>Best keyword:</strong> best place to stay in bkk<br>
+        <strong>Avg CPC:</strong> ฿44.74<br>
+        <strong>Est. clicks/day:</strong> ~19<br>
+        <strong>Daily cap:</strong> ฿833
+      </div>
+      <div class="market-tag">Budget exhausts ~wk 2</div>
+    </div>
+    <div class="market-card" style="--mc: var(--accent-au)">
+      <div class="market-flag">🇦🇺</div>
+      <div class="market-name">Australia</div>
+      <div class="market-budget">฿25,000</div>
+      <div class="market-pct">25% of total budget</div>
+      <hr class="market-divider">
+      <div class="market-detail">
+        <strong>Best keyword:</strong> best place to stay in bkk<br>
+        <strong>Avg CPC:</strong> ฿44.74<br>
+        <strong>Est. clicks/day:</strong> ~19<br>
+        <strong>Daily cap:</strong> ฿833
+      </div>
+      <div class="market-tag">Shared SG pool</div>
+    </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="main-grid">
+    <!-- Donut -->
+    <div class="card">
+      <div class="card-title">Budget split by market</div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-sq" style="background:var(--accent-hk)"></div>HK ฿25K (25%)</div>
+        <div class="legend-item"><div class="legend-sq" style="background:var(--accent-my)"></div>MY ฿25K (25%)</div>
+        <div class="legend-item"><div class="legend-sq" style="background:var(--accent-sg)"></div>SG ฿25K (25%)</div>
+        <div class="legend-item"><div class="legend-sq" style="background:var(--accent-au)"></div>AU ฿25K (25%)</div>
+      </div>
+      <div class="donut-wrap" style="position:relative">
+        <div style="position:relative;height:220px"><canvas id="donutChart"></canvas></div>
+        <div class="donut-center">
+          <div class="donut-center-val">฿100K</div>
+          <div class="donut-center-label">Total / month</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CPC comparison bar -->
+    <div class="card">
+      <div class="card-title">Avg CPC by market (฿)</div>
+      <div style="position:relative;height:220px;margin-top:10px"><canvas id="cpcChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Keyword table -->
+  <div class="card full-width" style="margin-bottom:16px">
+    <div class="card-title">Keyword allocation plan</div>
+    <table class="kw-table">
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Market</th>
+          <th>Avg CPC</th>
+          <th>Daily searches</th>
+          <th>Full monthly cost</th>
+          <th>Allocated budget</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="kw-name">sukhumvit 20 hotel</td>
+          <td><div class="kw-market"><div class="kw-dot" style="background:var(--accent-hk)"></div><span style="color:var(--muted);font-size:11px">HK / MY</span></div></td>
+          <td class="kw-cpc">฿27.81</td>
+          <td class="kw-cpc">33/day</td>
+          <td class="kw-cpc">฿27,531</td>
+          <td class="kw-alloc" style="color:var(--accent-hk)">฿25,000</td>
+          <td><span class="status-pill pill-capped">Capped</span></td>
+        </tr>
+        <tr>
+          <td class="kw-name">hotel near asok station</td>
+          <td><div class="kw-market"><div class="kw-dot" style="background:var(--accent-hk)"></div><span style="color:var(--muted);font-size:11px">HK / MY</span></div></td>
+          <td class="kw-cpc">฿36.07</td>
+          <td class="kw-cpc">33/day</td>
+          <td class="kw-cpc">฿35,709</td>
+          <td class="kw-alloc" style="color:var(--muted)">฿0</td>
+          <td><span class="status-pill pill-partial">Over budget</span></td>
+        </tr>
+        <tr>
+          <td class="kw-name">best place to stay in bangkok</td>
+          <td><div class="kw-market"><div class="kw-dot" style="background:var(--accent-sg)"></div><span style="color:var(--muted);font-size:11px">SG / AU</span></div></td>
+          <td class="kw-cpc">฿44.74</td>
+          <td class="kw-cpc">328/day</td>
+          <td class="kw-cpc">฿440,242</td>
+          <td class="kw-alloc" style="color:var(--accent-sg)">฿25,000</td>
+          <td><span class="status-pill pill-partial">Partial (~6%)</span></td>
+        </tr>
+        <tr>
+          <td class="kw-name">bangkok accommodation</td>
+          <td><div class="kw-market"><div class="kw-dot" style="background:var(--accent-sg)"></div><span style="color:var(--muted);font-size:11px">SG / AU</span></div></td>
+          <td class="kw-cpc">฿49.37</td>
+          <td class="kw-cpc">328/day</td>
+          <td class="kw-cpc">฿485,801</td>
+          <td class="kw-alloc" style="color:var(--accent-sg)">฿25,000</td>
+          <td><span class="status-pill pill-partial">Partial (~5%)</span></td>
+        </tr>
+        <tr>
+          <td class="kw-name">luxury hotel bangkok</td>
+          <td><div class="kw-market"><div class="kw-dot" style="background:var(--accent-hk)"></div><span style="color:var(--muted);font-size:11px">HK / MY</span></div></td>
+          <td class="kw-cpc">฿44.41</td>
+          <td class="kw-cpc">33/day</td>
+          <td class="kw-cpc">฿43,965</td>
+          <td class="kw-alloc" style="color:var(--muted)">฿0</td>
+          <td><span class="status-pill pill-partial">Over budget</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Daily budget bar breakdown -->
+  <div class="card full-width">
+    <div class="card-title">Daily budget utilisation — ฿833 per market per day</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:8px">
+      <div>
+        <div class="bar-row">
+          <div class="bar-top">
+            <span class="bar-name">🇭🇰 Hong Kong — sukhumvit 20 hotel</span>
+            <span class="bar-amt">฿833/day · ~30 clicks</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--accent-hk)"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-top">
+            <span class="bar-name">🇲🇾 Malaysia — sukhumvit 20 hotel</span>
+            <span class="bar-amt">฿833/day · ~30 clicks</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--accent-my)"></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="bar-row">
+          <div class="bar-top">
+            <span class="bar-name">🇸🇬 Singapore — best place to stay...</span>
+            <span class="bar-amt">฿833/day · ~19 clicks</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--accent-sg)"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-top">
+            <span class="bar-name">🇦🇺 Australia — best place to stay...</span>
+            <span class="bar-amt">฿833/day · ~19 clicks</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--accent-au)"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline simulation -->
+    <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border)">
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px">Budget runway simulation — 30 days</div>
+      <div style="position:relative;height:80px" id="timelineWrap">
+        <canvas id="timelineChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-note">Source: Google Ads Keyword Planner · Non-Brand Campaign · Est. values</div>
+    <div class="footer-note">Generated from Book1.xlsx · ฿ Thai Baht</div>
+  </div>
+
+</div>
+
+<script>
+const isDark = true;
+const gridColor = 'rgba(255,255,255,0.05)';
+const tickColor = '#6b7280';
+
+Chart.defaults.color = tickColor;
+Chart.defaults.font.family = "'DM Mono', monospace";
+Chart.defaults.font.size = 11;
+
+new Chart(document.getElementById('donutChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['HK','MY','SG','AU'],
+    datasets: [{
+      data: [25000,25000,25000,25000],
+      backgroundColor: ['#00c897','#00a87a','#4d9fff','#1a73e8'],
+      borderWidth: 3,
+      borderColor: '#12151a',
+      hoverOffset: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    cutout: '68%',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: c => ' ฿' + c.parsed.toLocaleString() + ' (25%)' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('cpcChart'), {
+  type: 'bar',
+  data: {
+    labels: ['HK/MY\nniche kw', 'SG/AU\nniche kw', 'HK/MY\nmid kw', 'KR-EN\nhead kw', 'SG/AU\nhead kw'],
+    datasets: [{
+      data: [27.81, 44.74, 68.02, 84.31, 64.14],
+      backgroundColor: ['#00c897','#4d9fff','#00c89766','#f0b42966','#4d9fff66'],
+      borderRadius: 4,
+      borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ' ฿' + c.parsed.y.toFixed(2) } } },
+    scales: {
+      x: { ticks: { color: tickColor, font: { size: 10 } }, grid: { display: false }, border: { color: 'transparent' } },
+      y: { ticks: { callback: v => '฿'+v, color: tickColor }, grid: { color: gridColor }, border: { color: 'transparent' } }
+    }
+  }
+});
+
+const days = Array.from({length:30}, (_,i) => 'D'+(i+1));
+const hkRunway = days.map((_,i) => Math.max(0, 25000 - (i * 833)));
+const sgRunway = days.map((_,i) => Math.max(0, 25000 - (i * 833)));
+
+new Chart(document.getElementById('timelineChart'), {
+  type: 'line',
+  data: {
+    labels: days,
+    datasets: [
+      { label:'HK/MY', data: hkRunway, borderColor:'#00c897', backgroundColor:'rgba(0,200,151,0.08)', fill:true, tension:0.3, borderWidth:1.5, pointRadius:0 },
+      { label:'SG/AU', data: sgRunway, borderColor:'#4d9fff', backgroundColor:'rgba(77,159,255,0.08)', fill:true, tension:0.3, borderWidth:1.5, pointRadius:0 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position:'top', align:'end', labels: { boxWidth:10, boxHeight:10, borderRadius:2, color: tickColor, font:{size:10} } },
+      tooltip: { callbacks: { label: c => ' ฿' + Math.round(c.parsed.y).toLocaleString() + ' remaining' } }
+    },
+    scales: {
+      x: { ticks: { color: tickColor, maxTicksLimit: 10, font:{size:9} }, grid: { color: gridColor }, border: { color:'transparent' } },
+      y: { ticks: { callback: v => '฿'+Math.round(v/1000)+'K', color: tickColor }, grid: { color: gridColor }, border: { color:'transparent' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
