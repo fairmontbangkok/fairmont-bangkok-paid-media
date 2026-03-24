@@ -11,12 +11,11 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --white:#ffffff;
-  --bg:#fafaf8;
-  --border:#ebebeb;
+  --bg:#f9f9f7;
+  --border:#e8e8e5;
   --text:#1a1a18;
   --muted:#999890;
-  --soft:#f5f5f2;
-  --deep:#1a3328;
+  --soft:#f4f4f1;
   --gold:#b8862a;
   --sem:#1a6e50;
   --pmax:#6b3fa0;
@@ -33,26 +32,25 @@ html{font-size:14px}
 body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6;min-height:100vh}
 
 /* ─ TOPBAR ─ */
-.topbar{background:var(--deep);height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 36px;border-bottom:1px solid rgba(255,255,255,.08)}
-.t-brand{display:flex;align-items:center;gap:10px}
-.t-mark{width:28px;height:28px;background:var(--gold);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--deep);font-family:var(--f)}
-.t-name{font-size:12px;font-weight:600;color:#fff;letter-spacing:.03em}
-.t-sep{width:1px;height:14px;background:rgba(255,255,255,.15)}
-.t-sub{font-size:11px;color:rgba(255,255,255,.38);letter-spacing:.03em}
-.t-meta{font-family:var(--m);font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.05em}
+.topbar{background:var(--white);height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 36px;border-bottom:1px solid var(--border)}
+.t-brand{display:flex;align-items:center;gap:8px}
+.t-name{font-size:12px;font-weight:600;color:var(--text);letter-spacing:.01em}
+.t-sep{width:1px;height:13px;background:var(--border);margin:0 2px}
+.t-sub{font-size:11px;color:var(--muted)}
+.t-meta{font-family:var(--m);font-size:9px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
 
 /* ─ HEADER ─ */
-.header{background:var(--white);border-bottom:1px solid var(--border);padding:24px 36px 0}
-.h-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
-.h-eyebrow{font-family:var(--m);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
-.h-title{font-size:20px;font-weight:600;letter-spacing:-.015em;color:var(--text);line-height:1.25}
-.h-title b{color:var(--gold);font-weight:600}
-.h-sub{font-size:11px;color:var(--muted);margin-top:5px}
-.h-stats{display:flex;gap:0;border:1px solid var(--border);border-radius:6px;overflow:hidden}
-.hs{padding:10px 18px;text-align:center;border-right:1px solid var(--border)}
+.header{background:var(--white);border-bottom:1px solid var(--border);padding:20px 36px 0}
+.h-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;gap:24px}
+.h-eyebrow{font-family:var(--m);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.h-title{font-size:18px;font-weight:600;letter-spacing:-.01em;color:var(--text);line-height:1.25}
+.h-title b{color:var(--text);font-weight:600}
+.h-sub{font-size:11px;color:var(--muted);margin-top:4px}
+.h-stats{display:flex;gap:0;border:1px solid var(--border);border-radius:5px;overflow:hidden;flex-shrink:0}
+.hs{padding:9px 16px;text-align:center;border-right:1px solid var(--border);background:var(--white)}
 .hs:last-child{border-right:none}
 .hs-l{font-family:var(--m);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
-.hs-v{font-size:16px;font-weight:600;color:var(--text);letter-spacing:-.01em}
+.hs-v{font-size:14px;font-weight:600;color:var(--text);letter-spacing:-.01em}
 .hs-s{font-size:10px;color:var(--muted);margin-top:1px}
 
 /* ─ TABS ─ */
@@ -76,8 +74,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
 .metric-v{font-size:22px;font-weight:600;letter-spacing:-.02em;color:var(--text)}
 .metric-s{font-size:11px;color:var(--muted);margin-top:3px}
 .metric-tag{display:inline-block;font-family:var(--m);font-size:9px;padding:2px 7px;border-radius:3px;margin-top:5px;text-transform:uppercase;letter-spacing:.04em}
-.tag-sem{background:#f0f8f4;color:var(--sem)}
-.tag-pmax{background:#f5eefb;color:var(--pmax)}
+.tag-sem{background:#f0f8f4;color:#1a6e50}
+.tag-pmax{background:#f5eefb;color:#6b3fa0}
 .tag-gold{background:#faf3e4;color:#8a6010}
 
 /* ─ BUDGET METER ─ */
@@ -130,20 +128,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
 
 /* ─ PILLS ─ */
 .pill{display:inline-block;font-family:var(--m);font-size:9px;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.04em;font-weight:500}
-.p-ok{background:var(--green-lt);color:var(--green)}
+.p-ok{background:#f0f8f4;color:#1a6e50}
 .p-gold{background:#faf3e4;color:#8a6010}
-.p-sg{background:#edf2fb;color:var(--sg)}
-.p-pmax{background:#f5eefb;color:var(--pmax)}
-.p-warn{background:var(--red-lt);color:var(--red)}
+.p-sg{background:#edf2fb;color:#1a4f8c}
+.p-pmax{background:#f5eefb;color:#6b3fa0}
+.p-warn{background:#fdf2f0;color:#c0392b}
 .p-grey{background:var(--soft);color:var(--muted);border:1px solid var(--border)}
-.p-sem{background:var(--green-lt);color:var(--sem)}
+.p-sem{background:#f0f8f4;color:#1a6e50}
 .dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:4px}
 
 /* ─ FILTER BTNS ─ */
 .filters{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
 .fb{font-family:var(--f);font-size:11px;font-weight:500;padding:5px 13px;border-radius:20px;border:1px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;transition:all .1s}
 .fb:hover{color:var(--text);border-color:#ccc}
-.fb.on{background:var(--deep);color:#fff;border-color:var(--deep)}
+.fb.on{background:var(--text);color:#fff;border-color:var(--text)}
 
 /* ─ EXPLAIN BLOCK ─ */
 .explain{border-left:2px solid var(--gold);padding:12px 16px;background:var(--white);border-radius:0 6px 6px 0;margin-bottom:14px;font-size:12px;color:var(--muted);line-height:1.65}
@@ -161,8 +159,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
 .ba-row:last-child{border-bottom:none}
 
 /* ─ STRUCTURE DIAGRAM ─ */
-.diagram{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
-.diag-head{background:var(--deep);color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.diagram{border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:14px}
+.diag-head{background:#1a3328;color:#fff;padding:13px 20px;display:flex;align-items:center;justify-content:space-between}
 .diag-head-title{font-size:12px;font-weight:600}
 .diag-head-meta{font-family:var(--m);font-size:9px;color:rgba(255,255,255,.4);display:flex;gap:16px}
 .diag-body{display:grid;grid-template-columns:7fr 3fr}
@@ -198,7 +196,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
 <!-- TOPBAR -->
 <div class="topbar">
   <div class="t-brand">
-    <div class="t-mark">FB</div>
     <div class="t-name">Fairmont Bangkok Sukhumvit</div>
     <div class="t-sep"></div>
     <div class="t-sub">Paid Media Plan · Google Ads</div>
@@ -259,7 +256,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
       <div class="sc-title">Search Ads</div>
       <div class="sc-sub">When someone in HK, MY, SG or AU searches "luxury hotel Bangkok" on Google, our ad appears at the top. <b>We pay only when they click.</b> High purchase intent — the user is actively looking to book.</div>
       <div class="sc-row"><span>Goal</span><span>Drive direct traffic + bookings</span></div>
-      <div class="sc-row"><span>Est. clicks / month</span><span style="color:var(--sem);font-weight:600">~9,417</span></div>
+      <div class="sc-row"><span>Est. clicks / month</span><span style="font-weight:600;color:var(--sem)">~9,417</span></div>
       <div class="sc-row"><span>Est. bookings (2% CVR)</span><span style="font-weight:600">~188</span></div>
       <div class="sc-row"><span>Bidding strategy</span><span>Manual CPC · low range bid</span></div>
       <div class="sc-row"><span>Match type</span><span>Exact match only</span></div>
@@ -274,7 +271,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
       <div class="sc-title">Performance Max</div>
       <div class="sc-sub">Google automatically shows our hotel ads across <b>all its channels</b>. Builds brand awareness among travellers earlier in their journey.</div>
       <div class="sc-row"><span>Goal</span><span>Brand awareness + reach</span></div>
-      <div class="sc-row"><span>Est. impressions</span><span style="color:var(--pmax);font-weight:600">750K+</span></div>
+      <div class="sc-row"><span>Est. impressions</span><span style="font-weight:600;color:var(--pmax)">750K+</span></div>
       <div class="sc-row"><span>Est. clicks</span><span style="font-weight:600">~1,500</span></div>
       <div class="sc-row"><span>Bidding</span><span>Maximise conversions</span></div>
       <div class="sc-row"><span>Daily budget</span><span>฿1,000 / day</span></div>
@@ -322,7 +319,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
       <div class="ml"><div class="ml-dot" style="background:#0f6e50"></div>SEM · luxury hotel bkk (HK/MY) ฿12,801</div>
       <div class="ml"><div class="ml-dot" style="background:#1a8f62"></div>SEM · hotel near asok (HK/MY) ฿14,216</div>
       <div class="ml"><div class="ml-dot" style="background:#1a4f8c"></div>SEM · best place to stay (SG/AU) ฿42,983</div>
-      <div class="ml"><div class="ml-dot" style="background:#6b3fa0"></div>PMAX · all markets ฿30,000</div>
+      <div class="ml"><div class="ml-dot" style="background:#b8862a"></div>PMAX · all markets ฿30,000</div>
     </div>
   </div>
 
@@ -374,7 +371,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
       <div class="ba-row"><span>Keywords active</span><span class="fw">2 only</span></div>
       <div class="ba-row"><span>Avg cost per click</span><span class="fw">฿41.10</span></div>
       <div class="ba-row"><span>Markets covered</span><span class="fw">HK + MY only</span></div>
-      <div class="ba-row"><span>SG + AU</span><span class="fw" style="color:var(--red)">Partial</span></div>
+      <div class="ba-row"><span>SG + AU</span><span class="fw" style="color:var(--muted)">Partial</span></div>
     </div>
     <div class="ba ba-after">
       <div class="ba-label" style="color:var(--sem)">After — optimised low bid ✓</div>
@@ -427,10 +424,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
       <div class="diag-group">
         <div class="dg-tag">Ad Group 1 · Location: Hong Kong + Malaysia</div>
         <div class="dg-title"><span style="font-size:16px">🇭🇰🇲🇾</span>Hong Kong + Malaysia</div>
-        <div class="dg-budget" style="color:var(--hk)">฿27,017</div>
+        <div class="dg-budget">฿27,017</div>
         <div class="dg-note">38.6% of SEM · ฿901/day</div>
         <div class="dg-stats">
-          <div class="dg-stat"><span>Est. clicks / month</span><span style="color:var(--hk)" class="fw">~1,980</span></div>
+          <div class="dg-stat"><span>Est. clicks / month</span><span class="fw">~1,980</span></div>
           <div class="dg-stat"><span>Days active</span><span>30 / 30</span></div>
         </div>
         <div class="dg-kws">
@@ -447,10 +444,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
       <div class="diag-group" style="border-right:none">
         <div class="dg-tag">Ad Group 2 · Location: Singapore + Australia</div>
         <div class="dg-title"><span style="font-size:16px">🇸🇬🇦🇺</span>Singapore + Australia</div>
-        <div class="dg-budget" style="color:var(--sg)">฿42,983</div>
+        <div class="dg-budget">฿42,983</div>
         <div class="dg-note">61.4% of SEM · ฿1,433/day</div>
         <div class="dg-stats">
-          <div class="dg-stat"><span>Est. clicks / month</span><span style="color:var(--sg)" class="fw">~7,437</span></div>
+          <div class="dg-stat"><span>Est. clicks / month</span><span class="fw">~7,437</span></div>
           <div class="dg-stat"><span>Share of voice</span><span>~13% (capped)</span></div>
         </div>
         <div class="dg-kws">
@@ -466,17 +463,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
   <div class="slabel">Campaign 2 · Performance Max (PMAX) · ฿30,000/month</div>
 
   <div class="diagram">
-    <div class="diag-head" style="background:#3d1a6e">
+    <div class="diag-head" style="background:#2d1a4e">
       <div class="diag-head-title">Brand Awareness | Fairmont Bangkok — PMAX</div>
       <div class="diag-head-meta"><span>฿30,000 / month</span><span>Maximise conversions</span><span>All Google channels</span><span>HK · MY · SG · AU</span></div>
     </div>
     <div style="padding:18px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
       <div>
         <div class="dg-tag">Performance</div>
-        <div class="dg-stat"><span>Budget</span><span class="fw" style="color:var(--pmax)">฿30,000/mo</span></div>
+        <div class="dg-stat"><span>Budget</span><span class="fw">฿30,000/mo</span></div>
         <div class="dg-stat"><span>Daily cap</span><span>฿1,000/day</span></div>
         <div class="dg-stat"><span>Est. clicks</span><span class="fw">~1,500</span></div>
-        <div class="dg-stat"><span>Est. impressions</span><span class="fw" style="color:var(--pmax)">750K+</span></div>
+        <div class="dg-stat"><span>Est. impressions</span><span class="fw">750K+</span></div>
       </div>
       <div>
         <div class="dg-tag">Placements</div>
