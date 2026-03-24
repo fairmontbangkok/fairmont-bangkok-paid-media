@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fairmont Bangkok Sukhumvit — Paid Media Plan</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -26,7 +26,7 @@
   --green:#1a6e50;
   --green-lt:#f0f8f4;
   --f:'Montserrat',sans-serif;
-  --m:'DM Mono',monospace;
+  --m:'Montserrat',sans-serif;
 }
 html{font-size:14px}
 body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6;min-height:100vh}
@@ -37,12 +37,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
 .t-name{font-size:12px;font-weight:600;color:var(--text);letter-spacing:.01em}
 .t-sep{width:1px;height:13px;background:var(--border);margin:0 2px}
 .t-sub{font-size:11px;color:var(--muted)}
-.t-meta{font-family:var(--m);font-size:9px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.t-meta{font-family:var(--m);font-size:9px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
 
 /* ─ HEADER ─ */
 .header{background:var(--white);border-bottom:1px solid var(--border);padding:20px 36px 0}
 .h-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;gap:24px}
-.h-eyebrow{font-family:var(--m);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.h-eyebrow{font-family:var(--m);font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
 .h-title{font-size:18px;font-weight:600;letter-spacing:-.01em;color:var(--text);line-height:1.25}
 .h-title b{color:var(--text);font-weight:600}
 .h-sub{font-size:11px;color:var(--muted);margin-top:4px}
@@ -64,16 +64,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
 .pane{display:none}.pane.on{display:block}
 
 /* ─ SECTION LABEL ─ */
-.slabel{font-family:var(--m);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin:28px 0 14px;display:flex;align-items:center;gap:10px}
+.slabel{font-family:var(--m);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:28px 0 14px;display:flex;align-items:center;gap:10px}
 .slabel::after{content:'';flex:1;height:1px;background:var(--border)}
 
 /* ─ METRIC CARDS ─ */
 .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:24px}
 .metric{background:var(--white);padding:16px 18px}
-.metric-l{font-family:var(--m);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.metric-l{font-family:var(--m);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
 .metric-v{font-size:22px;font-weight:600;letter-spacing:-.02em;color:var(--text)}
 .metric-s{font-size:11px;color:var(--muted);margin-top:3px}
-.metric-tag{display:inline-block;font-family:var(--m);font-size:9px;padding:2px 7px;border-radius:3px;margin-top:5px;text-transform:uppercase;letter-spacing:.04em}
+.metric-tag{display:inline-block;font-family:var(--m);font-size:9px;padding:2px 7px;border-radius:3px;margin-top:5px;text-transform:uppercase;letter-spacing:.03em}
 .tag-sem{background:#f0f8f4;color:#1a6e50}
 .tag-pmax{background:#f5eefb;color:#6b3fa0}
 .tag-gold{background:#faf3e4;color:#8a6010}
@@ -92,7 +92,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
 /* ─ SPLIT CARDS ─ */
 .split{display:grid;grid-template-columns:7fr 3fr;gap:16px;margin-bottom:24px}
 .split-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:20px;position:relative}
-.sc-label{font-family:var(--m);font-size:9px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.sc-label{font-family:var(--m);font-size:9px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;display:flex;align-items:center;gap:7px}
 .sc-label::before{content:'';width:8px;height:8px;border-radius:50%}
 .sc-title{font-size:15px;font-weight:600;margin-bottom:3px}
 .sc-sub{font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.55}
@@ -118,7 +118,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
 
 /* ─ TABLE ─ */
 .tbl{width:100%;border-collapse:collapse;font-size:11px}
-.tbl thead th{font-family:var(--m);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;padding:0 10px 9px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;font-weight:500}
+.tbl thead th{font-family:var(--m);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;padding:0 10px 9px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;font-weight:500}
 .tbl tbody tr{border-bottom:1px solid var(--border)}
 .tbl tbody tr:last-child{border-bottom:none}
 .tbl tbody tr:hover{background:var(--soft)}
@@ -127,7 +127,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
 .fw{font-weight:500}
 
 /* ─ PILLS ─ */
-.pill{display:inline-block;font-family:var(--m);font-size:9px;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.04em;font-weight:500}
+.pill{display:inline-block;font-family:var(--m);font-size:9px;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.03em;font-weight:500}
 .p-ok{background:#f0f8f4;color:#1a6e50}
 .p-gold{background:#faf3e4;color:#8a6010}
 .p-sg{background:#edf2fb;color:#1a4f8c}
@@ -166,7 +166,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--f);line-height:1.6
 .diag-body{display:grid;grid-template-columns:7fr 3fr}
 .diag-group{padding:18px;border-right:1px solid var(--border);border-top:1px solid var(--border)}
 .diag-group:last-child{border-right:none}
-.dg-tag{font-family:var(--m);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.dg-tag{font-family:var(--m);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
 .dg-title{font-size:13px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
 .dg-budget{font-size:22px;font-weight:600;letter-spacing:-.02em}
 .dg-note{font-family:var(--m);font-size:9px;color:var(--muted);margin-bottom:12px;margin-top:2px}
